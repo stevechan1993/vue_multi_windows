@@ -1,54 +1,60 @@
 <template>
 	<el-row class="container">
+		<!--顶部导航栏-->
 		<el-col :span="24" class="header">
-			<el-col :span="10" class="logo" :class="collapsed?'logo-collapse-width':'logo-width'">
-				{{collapsed?'':sysName}}
+			<!--应用列表-->
+			<el-col :span="8">
+				<span><img src="../assets/nav_bag.png" /></span>
 			</el-col>
-			<el-col :span="10">
-				<div class="tools" @click.prevent="collapse">
-					<i class="fa fa-align-justify"></i>
-				</div>
+			<!--任务栏-->
+			<el-col :span="8">
+				<span class="taskspan"><img src="../assets/logo_nav/log0_12.png" /></span>
+				<span class="taskspan"><img src="../assets/logo_nav/log0_13.png" /></span>
+				<span class="taskspan"><img src="../assets/logo_nav/log0_nav_15.png" /></span>
 			</el-col>
-			<el-col :span="4" class="userinfo">
+			<!--用户操作-->
+			<el-col :span="8" class="userinfo">
 				<el-dropdown trigger="hover">
-					<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /> {{sysUserName}}</span>
+					<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /></span>
 					<el-dropdown-menu slot="dropdown">
-						<el-dropdown-item>我的消息</el-dropdown-item>
-						<el-dropdown-item>设置</el-dropdown-item>
+						<el-dropdown-item>账户状态</el-dropdown-item>
+						<el-dropdown-item>账户设置</el-dropdown-item>
+						<el-dropdown-item>注销账户</el-dropdown-item>
+						<el-dropdown-item>用户切换</el-dropdown-item>
+						<el-dropdown-item>帮助</el-dropdown-item>
 						<el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
 					</el-dropdown-menu>
 				</el-dropdown>
 			</el-col>
 		</el-col>
+		<!--中部导航栏-->
+		<el-col :span="24" class="subheader">
+			<!--图标-->
+			<!--<el-col :span="8" class="el-menu-demo"></el-col>-->
+			<!--导航-->
+			<el-col :span="8" class="nav-midle">
+				<el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+					<el-menu-item index="1">Overview</el-menu-item>
+					<el-menu-item index="1">Campaign</el-menu-item>
+					<el-menu-item index="3">Analytics</el-menu-item>
+				</el-menu>
+			</el-col>
+			<!--按钮-->
+			<!--<el-col :span="8" class="el-menu-demo"></el-col>-->
+		</el-col>
+		<!--侧边导航栏-->
 		<el-col :span="24" class="main">
 			<aside :class="collapsed?'menu-collapsed':'menu-expanded'">
-				<!--导航菜单-->
 				<el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect"
-					 unique-opened router v-show="!collapsed">
+						 unique-opened router v-show="!collapsed">
 					<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
-						<el-submenu :index="index+''" v-if="!item.leaf">
-							<template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
-							<el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>
-						</el-submenu>
+						<!--<el-submenu :index="index+''" v-if="!item.leaf">-->
+							<!--<template slot="title"><i :class="item.iconCls"></i></template>-->
+							<!--&lt;!&ndash;<el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>&ndash;&gt;-->
+						<!--</el-submenu>-->
 						<el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
 					</template>
 				</el-menu>
-				<!--导航菜单-折叠后-->
-				<ul class="el-menu el-menu-vertical-demo collapsed" v-show="collapsed" ref="menuCollapsed">
-					<li v-for="(item,index) in $router.options.routes" v-if="!item.hidden" class="el-submenu item">
-						<template v-if="!item.leaf">
-							<div class="el-submenu__title" style="padding-left: 20px;" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)"><i :class="item.iconCls"></i></div>
-							<ul class="el-menu submenu" :class="'submenu-hook-'+index" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)"> 
-								<li v-for="child in item.children" v-if="!child.hidden" :key="child.path" class="el-menu-item" style="padding-left: 40px;" :class="$route.path==child.path?'is-active':''" @click="$router.push(child.path)">{{child.name}}</li>
-							</ul>
-						</template>
-						<template v-else>
-							<li class="el-submenu">
-								<div class="el-submenu__title el-menu-item" style="padding-left: 20px;height: 56px;line-height: 56px;padding: 0 20px;" :class="$route.path==item.children[0].path?'is-active':''" @click="$router.push(item.children[0].path)"><i :class="item.iconCls"></i></div>
-							</li>
-						</template>
-					</li>
-				</ul>
 			</aside>
 			<section class="content-container">
 				<div class="grid-content bg-purple-light">
@@ -114,8 +120,6 @@
 				}).catch(() => {
 
 				});
-
-
 			},
 			//折叠导航栏
 			collapse:function(){
@@ -140,16 +144,17 @@
 
 <style scoped lang="scss">
 	@import '~scss_vars';
-	
+
 	.container {
 		position: absolute;
 		top: 0px;
 		bottom: 0px;
 		width: 100%;
 		.header {
-			height: 60px;
-			line-height: 60px;
-			background: $color-primary;
+			height: 52px;
+			line-height: 52px;
+			/*background: $color-primary;*/
+			background: #3e3e3e;
 			color:#fff;
 			.userinfo {
 				text-align: right;
@@ -167,15 +172,31 @@
 					}
 				}
 			}
+			.appinfo {
+				text-align: right;
+				padding-right: 35px;
+				float: left;
+				.appinfo-inner {
+					cursor: pointer;
+					color:#fff;
+					img {
+						width: 40px;
+						height: 40px;
+						border-radius: 20px;
+						margin: 10px 0px 10px 10px;
+						float: right;
+					}
+				}
+			}
 			.logo {
 				//width:230px;
-				height:60px;
+				height:52px;
 				font-size: 22px;
 				padding-left:20px;
 				padding-right:20px;
 				border-color: rgba(238,241,146,0.3);
 				border-right-width: 1px;
-				border-right-style: solid;
+				/*border-right-style: solid;*/
 				img {
 					width: 40px;
 					float: left;
@@ -203,12 +224,12 @@
 			display: flex;
 			// background: #324057;
 			position: absolute;
-			top: 60px;
+			top: 112px;
 			bottom: 0px;
 			overflow: hidden;
 			aside {
-				flex:0 0 230px;
-				width: 230px;
+				flex:0 0 90px;
+				width: 90px;
 				// position: absolute;
 				// top: 0px;
 				// bottom: 0px;
@@ -232,12 +253,12 @@
 				}
 			}
 			.menu-collapsed{
-				flex:0 0 60px;
-				width: 60px;
+				flex:0 0 90px;
+				width: 90px;
 			}
 			.menu-expanded{
-				flex:0 0 230px;
-				width: 230px;
+				flex:0 0 90px;
+				width: 90px;
 			}
 			.content-container {
 				// background: #f1f2f7;
@@ -266,5 +287,24 @@
 				}
 			}
 		}
+	}
+	.el-row {
+		margin-bottom: 20px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	.subheader {
+		height: 60px;
+		border:1px solid #eef1f5;
+		background-color: #eef1f6;
+	}
+	.nav-midle {
+		margin:0 auto;
+	}
+	.taskspan {
+		position: relative;
+		top: 5px;
+		padding-left:15px;
 	}
 </style>

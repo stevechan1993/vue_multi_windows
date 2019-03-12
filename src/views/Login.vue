@@ -1,23 +1,44 @@
 <template>
-  <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px" class="demo-ruleForm login-container">
-    <h3 class="title">系统登录</h3>
-    <el-form-item prop="account">
-      <el-input type="text" v-model="ruleForm2.account" auto-complete="off" placeholder="请输入您的账号"></el-input>
-    </el-form-item>
-    <el-form-item prop="checkPass">
-      <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="请输入您的密码..."></el-input>
-    </el-form-item>
-    <el-checkbox v-model="checked" checked class="remember">记住我</el-checkbox>
-    <el-form-item style="width:100%;">
-      <el-button type="primary" style="width:100%;" @click.native.prevent="handleSubmit2" :loading="logining">登录</el-button>
-      <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
-    </el-form-item>
-  </el-form>
+  <el-row>
+    <el-col :span="12">
+      <div class="grid-content">
+        <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px" class="demo-ruleForm login-container">
+          <h3 class="title">WELCOME</h3>
+          <h3 class="title">BACK -</h3>
+          <el-form-item prop="account">
+            <el-input type="text" v-model="ruleForm2.account" auto-complete="off" placeholder="请输入您的账号"></el-input>
+          </el-form-item>
+          <el-form-item v-if="visible" prop="checkPass">
+            <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="请输入您的密码...">
+              <i slot="suffix" title="显示密码" @click="changePass('show')" style="cursor:pointer;"
+                 class="el-input__icon iconfont icon-show"></i>
+            </el-input>
+          </el-form-item>
+          <el-form-item v-else="visible" prop="checkPass">
+            <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="请输入您的密码...">
+              <i slot="suffix" title="显示密码" @click="changePass('hide')" style="cursor:pointer;"
+                 class="el-input__icon iconfont icon-show"></i>
+            </el-input>
+          </el-form-item>
+          <div>忘记密码？</div>
+          <el-form-item style="width:100%; margin-top: 25px">
+            <el-button type="primary" style="width:140px; float: right; background-color: #ff3825;border-color: #ff3825" @click.native.prevent="handleSubmit2" :loading="logining">登录</el-button>
+            <el-button style="width: 140px; float: left; margin-left: 0px;" @click.native.prevent="handleReset2">注册</el-button>
+          </el-form-item>
+          <el-checkbox v-model="checked" checked class="remember">记住我</el-checkbox>
+        </el-form>
+      </div>
+    </el-col>
+    <el-col :span="12">
+      <div class="grid-content ">
+        <img src="../assets/log_bac.jpg" alt="Pulpit rock"  width=100% height="100%">
+      </div>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
   import { requestLogin } from '../api/api';
-  //import NProgress from 'nprogress'
   export default {
     data() {
       return {
@@ -28,11 +49,11 @@
         },
         rules2: {
           account: [
-            { required: true, message: '请输入账号', trigger: 'blur' },
+            //{ required: true, message: '请输入账号', trigger: 'blur' },
             //{ validator: validaePass }
           ],
           checkPass: [
-            { required: true, message: '请输入密码', trigger: 'blur' },
+            //{ required: true, message: '请输入密码', trigger: 'blur' },
             //{ validator: validaePass2 }
           ]
         },
@@ -40,6 +61,10 @@
       };
     },
     methods: {
+      changePass(value) {
+        //this.visible = !(value === 'show');
+      },
+      //判断渲染，true:暗文显示，false:明文显示
       handleReset2() {
         this.$refs.ruleForm2.resetFields();
       },
@@ -62,7 +87,7 @@
                 });
               } else {
                 sessionStorage.setItem('user', JSON.stringify(user));
-                this.$router.push({ path: '/table' });
+                this.$router.push({ path: '/echarts' });
               }
             });
           } else {
@@ -83,19 +108,46 @@
     border-radius: 5px;
     -moz-border-radius: 5px;
     background-clip: padding-box;
-    margin: 180px auto;
-    width: 350px;
-    padding: 35px 35px 15px 35px;
+    margin: 0px auto;
+    width: 300px;
+    padding: 400px 35px 15px 35px;
     background: #fff;
-    border: 1px solid #eaeaea;
-    box-shadow: 0 0 25px #cac6c6;
+    /*border: 1px solid #eaeaea;*/
+    /*box-shadow: 0 0 25px #cac6c6;*/
     .title {
-      margin: 0px auto 40px auto;
-      text-align: center;
+      margin: -14px auto 14px auto;
+      text-align: left;
       color: #505458;
+      font-weight: bold;
     }
     .remember {
-      margin: 0px 0px 35px 0px;
+      margin: 15px 0px 35px 0px;
     }
+  }
+  .el-row {
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+  .row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
   }
 </style>
