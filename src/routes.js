@@ -27,7 +27,7 @@ let routes = [
     {
         path: '/',
         component: Home,
-        name: '',
+        name: 'Data overview',
         iconCls: 'fa fa-bar-chart',
         leaf: true, //只有一个节点
         children: [

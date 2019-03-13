@@ -11,6 +11,11 @@ import Vuex from 'vuex'
 //import 'nprogress/nprogress.css'
 import routes from './routes'
 import Mock from './mock'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
+// require styles
+import 'swiper/dist/css/swiper.css'
+
 Mock.bootstrap();
 import 'font-awesome/css/font-awesome.min.css'
 
@@ -20,6 +25,8 @@ import "./assets/icon/iconfont.css"
 Vue.use(ElementUI)
 Vue.use(VueRouter)
 Vue.use(Vuex)
+
+Vue.use(VueAwesomeSwiper,)
 
 //NProgress.configure({ showSpinner: false });
 

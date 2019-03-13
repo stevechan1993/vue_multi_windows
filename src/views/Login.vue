@@ -111,7 +111,7 @@
     background-clip: padding-box;
     margin: 0px auto;
     width: 300px;
-    padding: 400px 35px 15px 35px;
+    padding: 300px 35px 15px 35px;
     background: #fff;
     /*border: 1px solid #eaeaea;*/
     /*box-shadow: 0 0 25px #cac6c6;*/
