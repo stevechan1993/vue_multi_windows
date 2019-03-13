@@ -14,7 +14,7 @@
                  class="el-input__icon iconfont icon-show"></i>
             </el-input>
           </el-form-item>
-          <el-form-item v-else="visible" prop="checkPass">
+          <el-form-item v-else prop="checkPass">
             <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="请输入您的密码...">
               <i slot="suffix" title="显示密码" @click="changePass('hide')" style="cursor:pointer;"
                  class="el-input__icon iconfont icon-show"></i>
@@ -57,12 +57,13 @@
             //{ validator: validaePass2 }
           ]
         },
-        checked: true
+        checked: true,
+        visible: true
       };
     },
     methods: {
       changePass(value) {
-        //this.visible = !(value === 'show');
+        this.visible = !(value === 'show');
       },
       //判断渲染，true:暗文显示，false:明文显示
       handleReset2() {

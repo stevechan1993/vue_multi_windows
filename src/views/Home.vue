@@ -3,18 +3,44 @@
 		<!--顶部导航栏-->
 		<el-col :span="24" class="header">
 			<!--应用列表-->
-			<el-col :span="8">
-				<span><img src="../assets/nav_bag.png" /></span>
+			<!--<el-popover-->
+					<!--ref="popover4"-->
+					<!--placement="bottom"-->
+					<!--width="300"-->
+					<!--height="600"-->
+					<!--trigger="click">-->
+				<!--<el-row class="container"></el-row>-->
+			<!--</el-popover>-->
+			<el-col :span="8" style="height: 60px; width: 120px;">
+				<!--<el-button v-popover:popover4 style="height: 60px; width: 100px;"><img src="../assets/nav_bag.png" style="margin-left: -16px; margin-top: -11px"/></el-button>-->
+				<el-dropdown>
+				  	<span class="el-dropdown-link"><img src="../assets/nav_bag.png"/></span>
+					<el-dropdown-menu slot="dropdown" style="margin-top:-20px; width: 200px;">
+						<el-input
+								placeholder="请输入要搜索的应用"
+								icon="search"
+								v-model="input2"
+								:on-icon-click="handleIconClick">
+						</el-input>
+						<el-dropdown-item><img src="../assets/logo_nav/log0_12.png" /></el-dropdown-item>
+						<el-dropdown-item><img src="../assets/logo_nav/log0_13.png" /></el-dropdown-item>
+						<el-dropdown-item><img src="../assets/logo_nav/log0_14.png" /></el-dropdown-item>
+					</el-dropdown-menu>
+				</el-dropdown>
 			</el-col>
 			<!--任务栏-->
 			<el-col :span="8">
 				<span class="taskspan"><img src="../assets/logo_nav/log0_12.png" /></span>
 				<span class="taskspan"><img src="../assets/logo_nav/log0_13.png" /></span>
+				<span class="taskspan"><img src="../assets/logo_nav/log0_14.png" /></span>
 				<span class="taskspan"><img src="../assets/logo_nav/log0_nav_15.png" /></span>
 			</el-col>
 			<!--用户操作-->
-			<el-col :span="8" class="userinfo">
-				<el-dropdown trigger="hover">
+			<el-col :span="8" class="userinfo" style="height: 52px;">
+				<el-button  style="height: 20px; width: 20px;"></el-button>
+				<el-button  style="height: 20px; width: 20px;"></el-button>
+				<el-button  style="height: 20px; width: 20px;"></el-button>
+				<el-dropdown trigger="click">
 					<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /></span>
 					<el-dropdown-menu slot="dropdown">
 						<el-dropdown-item>账户状态</el-dropdown-item>
@@ -30,17 +56,21 @@
 		<!--中部导航栏-->
 		<el-col :span="24" class="subheader">
 			<!--图标-->
-			<!--<el-col :span="8" class="el-menu-demo"></el-col>-->
+			<el-col :span="8" class="el-menu-demo" style="width: 400px">
+				<span><img src="../assets/logo4.png" /></span>
+			</el-col>
 			<!--导航-->
 			<el-col :span="8" class="nav-midle">
-				<el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+				<el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect1">
 					<el-menu-item index="1">Overview</el-menu-item>
 					<el-menu-item index="1">Campaign</el-menu-item>
 					<el-menu-item index="3">Analytics</el-menu-item>
 				</el-menu>
 			</el-col>
 			<!--按钮-->
-			<!--<el-col :span="8" class="el-menu-demo"></el-col>-->
+			<el-col :span="8" class="el-menu-demo">
+				<el-button style="width: 100px; float: right; margin-left: 0px; margin-top: 10px; background: #20a0ff; color: #ffffff" @click.native.prevent="">Premium</el-button>
+			</el-col>
 		</el-col>
 		<!--侧边导航栏-->
 		<el-col :span="24" class="main">
@@ -48,10 +78,6 @@
 				<el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect"
 						 unique-opened router v-show="!collapsed">
 					<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
-						<!--<el-submenu :index="index+''" v-if="!item.leaf">-->
-							<!--<template slot="title"><i :class="item.iconCls"></i></template>-->
-							<!--&lt;!&ndash;<el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>&ndash;&gt;-->
-						<!--</el-submenu>-->
 						<el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
 					</template>
 				</el-menu>
@@ -94,7 +120,10 @@
 					type: [],
 					resource: '',
 					desc: ''
-				}
+				},
+				activeIndex: '1',
+				activeIndex2: '1',
+				input2: ''
 			}
 		},
 		methods: {
@@ -108,6 +137,12 @@
 				//console.log('handleclose');
 			},
 			handleselect: function (a, b) {
+			},
+			handleSelect1(key, keyPath) {
+				console.log(key, keyPath);
+			},
+			handleIconClick(ev) {
+				console.log(ev);
 			},
 			//退出登录
 			logout: function () {
@@ -164,8 +199,8 @@
 					cursor: pointer;
 					color:#fff;
 					img {
-						width: 40px;
-						height: 40px;
+						width: 30px;
+						height: 30px;
 						border-radius: 20px;
 						margin: 10px 0px 10px 10px;
 						float: right;
@@ -257,8 +292,8 @@
 				width: 90px;
 			}
 			.menu-expanded{
-				flex:0 0 90px;
-				width: 90px;
+				flex:0 0 85px;
+				width: 85px;
 			}
 			.content-container {
 				// background: #f1f2f7;
@@ -306,5 +341,8 @@
 		position: relative;
 		top: 5px;
 		padding-left:15px;
+	}
+	.button-img {
+		margin: 0 auto;
 	}
 </style>
