@@ -4,6 +4,7 @@ import App from './App'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 //import './assets/theme/theme-green/index.css'
+import 'iview/dist/styles/iview.css'
 import VueRouter from 'vue-router'
 import store from './vuex/store'
 import Vuex from 'vuex'
@@ -11,10 +12,7 @@ import Vuex from 'vuex'
 //import 'nprogress/nprogress.css'
 import routes from './routes'
 import Mock from './mock'
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-
-// require styles
-import 'swiper/dist/css/swiper.css'
+import iView from 'iview'
 
 Mock.bootstrap();
 import 'font-awesome/css/font-awesome.min.css'
@@ -22,17 +20,16 @@ import 'font-awesome/css/font-awesome.min.css'
 //import icon
 import "./assets/icon/iconfont.css"
 
-Vue.use(ElementUI)
-Vue.use(VueRouter)
-Vue.use(Vuex)
-
-Vue.use(VueAwesomeSwiper,)
+Vue.use(ElementUI);
+Vue.use(VueRouter);
+Vue.use(Vuex);
+Vue.use(iView);
 
 //NProgress.configure({ showSpinner: false });
 
 const router = new VueRouter({
   routes
-})
+});
 
 router.beforeEach((to, from, next) => {
   //NProgress.start();
@@ -45,11 +42,13 @@ router.beforeEach((to, from, next) => {
   } else {
     next()
   }
-})
+});
 
 //router.afterEach(transition => {
 //NProgress.done();
 //});
+
+// Vue.component(CollapseTransition.name, CollapseTransition);
 
 new Vue({
   //el: '#app',
@@ -58,5 +57,5 @@ new Vue({
   store,
   //components: { App }
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
 

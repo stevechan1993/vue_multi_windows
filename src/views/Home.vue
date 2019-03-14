@@ -6,8 +6,8 @@
 			<el-col :span="6" style="height: 60px; width: 100px; background: #FF3825;">
 				<el-dropdown trigger="click">
 				  	<span class="el-dropdown-link"><img src="../assets/logo_nav/card.png" style="margin: -10px 31px"/></span>
-					<el-dropdown-menu slot="dropdown" style="width: 300px;height: 600px; background: #3e3e3e; opacity: 0.8; top: 0px">
-						<el-col :space="24" style="margin-top: 20px;">
+					<el-dropdown-menu slot="dropdown" style="width: 300px;height: 600px; background: #3e3e3e; opacity: 0.8; top: 0px; left: 0px; margin: 0px; border: 0px">
+						<el-col :span="24" style="margin-top: 20px;">
 							<el-input
 									placeholder="请输入要搜索的应用"
 									icon="search"
@@ -41,11 +41,11 @@
 			<el-col :span="6" class="userinfo" style="height: 52px; width: 100px; float: right">
 				<el-dropdown trigger="click">
 					<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" style="border-radius: 50px;"/></span>
-					<el-dropdown-menu slot="dropdown" style="width: 300px;height: 600px; background: #3e3e3e; opacity: 0.8">
-						<el-col :span="24">
-							<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" style="margin-left: 85px;margin-top: 20px; margin-bottom: 30px;"/></span>
+					<el-dropdown-menu slot="dropdown" style="width: 300px;height: 600px; background: #3e3e3e; opacity: 0.8; margin-top: 2px; border: 0px">
+						<el-col :span="24" style="">
+							<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" style="width:100px;height:100px;border-radius:100px; position: relative; top: 30px; left: 100px"/></span>
 						</el-col>
-						<el-col :span="24" style="min-height: 200px">
+						<el-col :span="24" style="min-height: 200px;position: relative; top: 130px; color: #737373;">
 							<div class="display: flex">
 								<el-dropdown-item>账户状态</el-dropdown-item>
 								<el-dropdown-item>账户设置</el-dropdown-item>
@@ -62,7 +62,7 @@
 			<el-col :span="6" style="width: 150px; float: right;">
 				<el-button type="primary" icon="menu" @click="dialogTableVisible1 = true" class="mybutton"></el-button>
 				<el-dialog title="" :visible.sync="dialogTableVisible1" top="20%">
-					<el-row :gutter="20" style="margin: -68px -20px -30px;">
+					<el-row :gutter="20" style="margin: -102px -20px -30px;">
 						<el-col :span="6" style="padding-left: 0px; padding-right: 1px">
 							<div class="grid-content bg-purple"></div>
 						</el-col>
@@ -75,7 +75,7 @@
 				</el-dialog>
 				<el-button type="primary" icon="setting" @click="dialogTableVisible2 = true" class="mybutton"></el-button>
 				<el-dialog title="" :visible.sync="dialogTableVisible2" top="20%">
-					<el-row :gutter="20" style="margin: -68px -20px -30px;">
+					<el-row :gutter="20" style="margin: -102px -20px -30px;">
 						<el-col :span="6" style="padding-left: 0px; padding-right: 1px">
 							<div class="grid-content bg-purple"></div>
 						</el-col>
@@ -84,7 +84,24 @@
 						</el-col>
 					</el-row>
 				</el-dialog>
-				<el-button type="primary" icon="message" @click="" class="mybutton"></el-button>
+				<el-button type="primary" icon="message" @click="value1 = true" class="mybutton"></el-button>
+				<Drawer title="消息" :closable="true" v-model="value1" :scrollable="true">
+					<Row>
+						<Col>
+							<Card :bordered="false" style="background: #3e3e3e; width: 225px;">
+								<p slot="title">
+									<Icon type="ios-film-outline"></Icon>
+									系统事件
+								</p>
+								<a href="#" slot="extra" @click.prevent="deleteItem">
+									<Icon type="ios-loop-strong"></Icon>
+									Delete
+								</a>
+								<p>Content of card</p>
+							</Card>
+						</Col>
+					</Row>
+				</Drawer>
 			</el-col>
 		</el-col>
 		<!--中部导航栏-->
@@ -185,13 +202,16 @@
 				dialogTableVisible1: false,
 				dialogFormVisible1: false,
 				dialogTableVisible2: false,
-				dialogFormVisible2: false
+				dialogFormVisible2: false,
+				slideTableVisible: false,
+				show2: false,
+				value1: false
 			}
 		},
 		methods: {
-			// showSide:function(){
-			// 	//this.$store.dispatch('showSideBar')
-			// },
+			deleteItem() {
+				console.log("delete");
+			},
 			onSubmit() {
 				console.log('submit!');
 			},
@@ -208,6 +228,9 @@
 			},
 			handleIconClick(ev) {
 				console.log(ev);
+			},
+			handleMessage() {
+				console.log('handleMessage');
 			},
 			//退出登录
 			logout: function () {
@@ -447,5 +470,16 @@
 	.row-bg {
 		padding: 10px 0;
 		background-color: #f9fafc;
+	}
+	.transition-box {
+		margin-bottom: 10px;
+		width: 300px;
+		height: 600px;
+		background-color: #3e3e3e;
+		text-align: center;
+		color: #fff;
+		box-sizing: border-box;
+		margin-right: 20px;
+		opacity: 0.8;
 	}
 </style>

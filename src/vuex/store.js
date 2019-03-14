@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import * as actions from './actions'
 import * as getters from './getters'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 // 应用初始状态
 const state = {

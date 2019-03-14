@@ -22,8 +22,8 @@
           </el-form-item>
           <div>忘记密码？</div>
           <el-form-item style="width:100%; margin-top: 25px">
-            <el-button type="primary" style="width:140px; float: right; background-color: #ff3825;border-color: #ff3825" @click.native.prevent="handleSubmit2" :loading="logining">登录</el-button>
-            <el-button style="width: 140px; float: left; margin-left: 0px;" @click.native.prevent="handleReset2">注册</el-button>
+            <el-button type="primary" style="width:100px; float: right; background-color: #ff3825;border-color: #ff3825" @click.native.prevent="handleSubmit2" :loading="logining">登录</el-button>
+            <el-button style="width: 100px; float: left; margin-left: 0px;" @click.native.prevent="handleReset2">注册</el-button>
           </el-form-item>
           <el-checkbox v-model="checked" checked class="remember">记住我</el-checkbox>
         </el-form>
