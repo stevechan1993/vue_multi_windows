@@ -121,7 +121,7 @@
 			</el-col>
 			<!--按钮-->
 			<el-col :span="8" class="el-menu-demo" style="width: 30%;">
-				<el-button style="width: 80px; float: right; margin-top: 13px; margin-right: -20px; background: #20a0ff; color: #ffffff" @click.native.prevent="">Premium</el-button>
+				<el-button style="width: 80px; float: right; margin-top: 13px; margin-right: -20px; background: #20a0ff; color: #ffffff" @click.native.prevent="toggleFullScreen($event)">全屏</el-button>
 			</el-col>
 		</el-col>
 		<!--侧边导航栏-->
@@ -135,27 +135,29 @@
 				</el-menu>
 			</aside>
 			<section class="content-container">
-				<div class="grid-content bg-purple-light">
-					<el-col :span="24" class="breadcrumb-container" style="height: 50px; width: 200px;">
-						<strong class="title">{{$route.name}}</strong>
-						<el-breadcrumb separator="/" class="breadcrumb-inner" style="font-size: 25px;">
-							<el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
-								{{ item.name }}
-							</el-breadcrumb-item>
-						</el-breadcrumb>
-					</el-col>
-					<el-col :span="24" class="content-wrapper" style="background: #EEF1F6">
-						<transition name="fade" mode="out-in">
-							<router-view></router-view>
-						</transition>
-					</el-col>
-					<el-col :span="24" style="height: 50px">
-						<el-pagination
-								small
-								layout="prev, pager, next"
-								:total="50">
-						</el-pagination>
-					</el-col>
+				<div id="canvasContentDiv" class="grid-content bg-purple-light">
+					<canvas id="canvasPaintArea" style="width:100%;height:100%;background: #EEF1F6">
+						<!--<el-col :span="24" class="breadcrumb-container" style="height: 50px; width: 200px;">-->
+							<!--<strong class="title">{{$route.name}}</strong>-->
+							<!--<el-breadcrumb separator="/" class="breadcrumb-inner" style="font-size: 25px;">-->
+								<!--<el-breadcrumb-item v-for="item in $route.matched" :key="item.path">-->
+									<!--{{ item.name }}-->
+								<!--</el-breadcrumb-item>-->
+							<!--</el-breadcrumb>-->
+						<!--</el-col>-->
+						<!--<el-col :span="24" class="content-wrapper" style="background: #EEF1F6">-->
+							<!--<transition name="fade" mode="out-in">-->
+								<!--<router-view></router-view>-->
+							<!--</transition>-->
+						<!--</el-col>-->
+						<!--<el-col :span="24" style="height: 50px">-->
+							<!--<el-pagination-->
+									<!--small-->
+									<!--layout="prev, pager, next"-->
+									<!--:total="50">-->
+							<!--</el-pagination>-->
+						<!--</el-col>-->
+					</canvas>
 				</div>
 			</section>
 		</el-col>
@@ -166,6 +168,7 @@
 	export default {
 		data() {
 			return {
+				isFullscreen: true,
 				sysName:'VUE-IIOT',
 				collapsed:false,
 				sysUserName: '',
@@ -210,6 +213,41 @@
 			}
 		},
 		methods: {
+			checkFull() {
+				var isFull = document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document.msFullscreenEnabled;
+				if (isFull === undefined) {
+					isFull = false;
+				}
+				return isFull;
+			},
+			FullScreen(el) {
+				if (this.isFullscreen) {
+					if (document.exitFullscreen) {
+						document.exitFullscreen();
+					} else if (document.mozCancelFullScreen) {
+						document.mozCancelFullScreen();
+					} else if (document.webkitExitFullscreen) {
+						document.webkitExitFullscreen();
+					} else if (!document.msRequestFullscreen) {
+						document.msExitFullscree();
+					}
+				} else {
+					if (el.requestFullscreen) {
+						el.requestFullscreen();
+					} else if (el.mozRequestFullScreen) {
+						el.mozRequestFullScreen();
+					} else if (el.webkitRequestFullscreen) {
+						el.webkitRequestFullscreen();
+					} else if (el.msRequestFullscreen) {
+						this.isFullscreen = true;
+						el.msRequestFullscreen();
+					}
+				}
+			},
+			toggleFullScreen(e) {
+				this.isFullscreen = !this.isFullscreen;
+				this.FullScreen(document.getElementById("canvasPaintArea"));
+			},
 			deleteItem() {
 				console.log("delete");
 			},
@@ -217,10 +255,10 @@
 				console.log('submit!');
 			},
 			handleopen() {
-				//console.log('handleopen');
+				console.log('handleopen');
 			},
 			handleclose() {
-				//console.log('handleclose');
+				console.log('handleclose');
 			},
 			handleselect: function (a, b) {
 			},
@@ -229,9 +267,6 @@
 			},
 			handleIconClick(ev) {
 				console.log(ev);
-			},
-			handleMessage() {
-				console.log('handleMessage');
 			},
 			//退出登录
 			logout: function () {
@@ -254,11 +289,19 @@
 			}
 		},
 		mounted() {
-			var user = sessionStorage.getItem('user');
+			let _that = this;
+			let user = sessionStorage.getItem('user');
+
 			if (user) {
 				user = JSON.parse(user);
 				this.sysUserName = user.name || '';
 				this.sysUserAvatar = user.avatar || '';
+			}
+
+			window.onresize = function() {
+				if (!_that.checkFull()) {
+					_that.isFullscreen = true;
+				}
 			}
 		}
 	}

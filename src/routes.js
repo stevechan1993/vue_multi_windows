@@ -1,10 +1,7 @@
 import Login from './views/Login.vue'
 import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
-// import Main from './views/Main.vue'
-// import Table from './views/nav1/Table.vue'
-// import Form from './views/nav1/Form.vue'
-// import user from './views/nav1/user.vue'
+import HomePage from './views/HomePage'
 import Page1 from './views/nav3/echarts.vue'
 import Page2 from "./views/nav3/Page2.vue"
 import Page3 from "./views/nav3/Page3.vue"
