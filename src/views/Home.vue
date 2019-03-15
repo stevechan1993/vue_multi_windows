@@ -3,10 +3,10 @@
 		<!--顶部导航栏-->
 		<el-col :span="24" class="header">
 			<!--应用列表-->
-			<el-col :span="6" style="height: 60px; width: 100px; background: #FF3825;">
-				<el-dropdown trigger="click">
+			<el-col :span="6" style="height: 52px; width: 100px; background: #FF3825;">
+				<el-dropdown trigger="click" >
 				  	<span class="el-dropdown-link"><img src="../assets/logo_nav/card.png" style="margin: -10px 31px"/></span>
-					<el-dropdown-menu slot="dropdown" style="width: 300px;height: 600px; background: #3e3e3e; opacity: 0.8; top: 0px; left: 0px; margin: 0px; border: 0px">
+					<el-dropdown-menu slot="dropdown" style="width: 300px;height: 600px; background: #3e3e3e; opacity: 0.8; margin-left: -10px; margin-top: 0px;border: 0px">
 						<el-col :span="24" style="margin-top: 20px;">
 							<el-input
 									placeholder="请输入要搜索的应用"
@@ -32,17 +32,34 @@
 			</el-col>
 			<!--任务栏-->
 			<el-col :span="6">
-				<!--TODO 设置为tab标签-->
-				<span class="taskspan"><img src="../assets/logo_nav/log0_12.png" /></span>
-				<span class="taskspan"><img src="../assets/logo_nav/log0_13.png" /></span>
-				<span class="taskspan"><img src="../assets/logo_nav/log0_14.png" /></span>
-				<span class="taskspan"><img src="../assets/logo_nav/log0_nav_15.png" /></span>
+				<span class="taskspan">
+					<Badge dot>
+        				<a href="#/echarts" class="demo-badge">
+							<!--<img src="../assets/logo_nav/log0_12.png" />-->
+						</a>
+    				</Badge>
+				</span>
+				<span class="taskspan">
+					<a href="#/Page2" class="demo-badge">
+						<!--<img src="../assets/logo_nav/log0_13.png" />-->
+					</a>
+				</span>
+				<span class="taskspan">
+					<a href="#/Page3" class="demo-badge">
+						<!--<img src="../assets/logo_nav/log0_14.png" />-->
+					</a>
+				</span>
+				<span class="taskspan">
+					<a href="#/Page4" class="demo-badge">
+						<!--<img src="../assets/logo_nav/log0_nav_15.png" />-->
+					</a>
+				</span>
 			</el-col>
 			<!--用户信息-->
-			<el-col :span="6" class="userinfo" style="height: 52px; width: 100px; float: right">
+			<el-col :span="6" class="userinfo" style="height: 52px; width: 100px; margin-right: 0px; float: right">
 				<el-dropdown trigger="click">
 					<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" style="border-radius: 50px;"/></span>
-					<el-dropdown-menu slot="dropdown" style="width: 300px;height: 600px; background: #3e3e3e; opacity: 0.8; margin-top: 2px; border: 0px">
+					<el-dropdown-menu slot="dropdown" style="width: 300px; height: 600px; background: #3e3e3e; opacity: 0.8; margin-top: 0px; border: 0px">
 						<el-col :span="24" style="">
 							<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" style="width:100px;height:100px;border-radius:100px; position: relative; top: 30px; left: 100px"/></span>
 						</el-col>
@@ -86,7 +103,7 @@
 					</el-row>
 				</el-dialog>
 				<el-button type="primary" icon="message" @click="value1 = true" class="mybutton"></el-button>
-				<Drawer title="消息" :closable="true" v-model="value1" :scrollable="true">
+				<Drawer title="消息" :closable="false" :mask="true" :transfer="false" :inner="true" v-model="value1" :scrollable="true">
 					<Row>
 						<Col>
 							<Card :bordered="false" style="background: #3e3e3e; width: 225px;">
@@ -105,52 +122,58 @@
 				</Drawer>
 			</el-col>
 		</el-col>
-		<!--中部导航栏-->
-		<el-col :span="24" class="subheader">
-			<!--图标-->
-			<el-col :span="8" class="el-menu-demo">
-				<span><img src="../assets/logo_nav/log0_14.png" style="margin-top: 18px; margin-left: 20px;"/></span>
-			</el-col>
-			<!--导航-->
-			<el-col :span="8" class="nav-midle">
-				<el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect1">
-					<el-menu-item index="1">Overview</el-menu-item>
-					<el-menu-item index="1">Campaign</el-menu-item>
-					<el-menu-item index="3">Analytics</el-menu-item>
-				</el-menu>
-			</el-col>
-			<!--全屏按钮-->
-			<el-col :span="8" class="el-menu-demo" style="width: 30%;">
-				<el-button style="width: 80px; float: right; margin-top: 13px; margin-right: -20px; background: #20a0ff; color: #ffffff" @click="buttoncli">全屏</el-button>
-			</el-col>
+
+		<!--全屏按钮-->
+		<el-col :span="24" class="el-menu-demo" style="width: 30%; position: absolute;z-index: 999;right: 40px; top: 53px">
+			<el-button style="width: 80px; float: right; margin-top: 13px; margin-right: -20px; background: #20a0ff; color: #ffffff" @click="buttoncli">全屏</el-button>
 		</el-col>
-		<!--侧边导航栏-->
-		<el-col :span="24" class="main">
-			<aside :class="collapsed?'menu-collapsed':'menu-expanded'">
-				<el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect"
-						 unique-opened router v-show="!collapsed">
-					<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
-						<el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path" style="padding-left: 32px"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
-					</template>
-				</el-menu>
-			</aside>
-			<section class="content-container">
-				<div id="canvasContentDiv" class="grid-content bg-purple-light">
-					<el-col :span="24" class="breadcrumb-container" style="height: 50px; width: 200px;">
-						<strong class="title">{{$route.name}}</strong>
-						<el-breadcrumb separator="/" class="breadcrumb-inner" style="font-size: 25px;">
-							<el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
-								{{ item.name }}
-							</el-breadcrumb-item>
-						</el-breadcrumb>
-					</el-col>
-					<el-col :span="24" class="content-wrapper" style="background: #EEF1F6">
-						<transition name="fade" mode="out-in">
-							<router-view></router-view>
-						</transition>
-					</el-col>
-				</div>
-			</section>
+
+		<!--应用呈现区域-->
+		<el-col :span="24" class="application">
+			<!--导航栏-->
+			<el-col :span="24" class="subheader">
+				<!--应用图标-->
+				<el-col :span="12" class="el-menu-demo">
+					<span><img src="../assets/logo_nav/log0_14.png" style="margin-top: 18px; margin-left: 20px;"/></span>
+				</el-col>
+				<!--二级导航-->
+				<el-col :span="12" class="nav-midle">
+					<el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect1">
+						<el-menu-item index="1">Overview</el-menu-item>
+						<el-menu-item index="1">Campaign</el-menu-item>
+						<el-menu-item index="3">Analytics</el-menu-item>
+					</el-menu>
+				</el-col>
+			</el-col>
+			<!--侧边导航栏-->
+			<el-col :span="24" class="main">
+				<aside :class="collapsed?'menu-collapsed':'menu-expanded'">
+					<el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect"
+							 unique-opened router v-show="!collapsed">
+						<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
+							<el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path" style="padding-left: 32px"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
+						</template>
+					</el-menu>
+				</aside>
+				<!--应用内容-->
+				<section class="content-container">
+					<div id="canvasContentDiv" class="grid-content bg-purple-light">
+						<el-col :span="24" class="breadcrumb-container" style="height: 50px; width: 200px;">
+							<strong class="title">{{$route.name}}</strong>
+							<el-breadcrumb separator="/" class="breadcrumb-inner" style="font-size: 25px;">
+								<el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
+									{{ item.name }}
+								</el-breadcrumb-item>
+							</el-breadcrumb>
+						</el-col>
+						<el-col :span="24" class="content-wrapper" style="background: #EEF1F6">
+							<transition name="fade" mode="out-in">
+								<router-view></router-view>
+							</transition>
+						</el-col>
+					</div>
+				</section>
+			</el-col>
 		</el-col>
 	</el-row>
 </template>
@@ -258,7 +281,6 @@
 			}
 		},
 		mounted() {
-			let _that = this;
 			let user = sessionStorage.getItem('user');
 
 			if (user) {
@@ -266,18 +288,21 @@
 				this.sysUserName = user.name || '';
 				this.sysUserAvatar = user.avatar || '';
 			}
-
-			window.onresize = function() {
-				if (!_that.checkFull()) {
-					_that.isFullscreen = true;
-				}
-			}
 		}
 	}
 </script>
 
 <style scoped lang="scss">
 	@import '~scss_vars';
+	.demo-badge {
+		width: 34px;
+		height: 34px;
+		background: #eee;
+		border-radius: 6px;
+		display: inline-block;
+		margin-top: 5px;
+		margin-left: 10px;
+	}
 
 	.container {
 		position: absolute;
@@ -494,5 +519,8 @@
 		box-sizing: border-box;
 		margin-right: 20px;
 		opacity: 0.8;
+	}
+	.myDrawer {
+		margin-top: 52px;
 	}
 </style>
