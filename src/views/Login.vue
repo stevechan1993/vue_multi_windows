@@ -30,8 +30,8 @@
       </div>
     </el-col>
     <el-col :span="12">
-      <div class="grid-content ">
-        <img src="../assets/log_bac.jpg" alt="Pulpit rock"  width=100% height="100%">
+      <div class="grid-content " style="position: fixed">
+        <img src="../assets/log_bac.jpg" alt="Pulpit rock"  width=100% height="100%" >
       </div>
     </el-col>
   </el-row>
