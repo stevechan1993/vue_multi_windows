@@ -34,7 +34,7 @@
 			<el-col :span="6">
 				<span class="taskspan">
 					<Badge dot>
-        				<a href="#/echarts" class="demo-badge">
+        				<a href="#/Page1" class="demo-badge">
 							<!--<img src="../assets/logo_nav/log0_12.png" />-->
 						</a>
     				</Badge>
@@ -124,62 +124,74 @@
 		</el-col>
 
 		<!--全屏按钮-->
-		<el-col :span="24" class="el-menu-demo" style="width: 30%; position: absolute;z-index: 999;right: 40px; top: 53px">
-			<el-button style="width: 80px; float: right; margin-top: 13px; margin-right: -20px; background: #20a0ff; color: #ffffff" @click="buttoncli">全屏</el-button>
-		</el-col>
+		<!--<el-col :span="24" class="el-menu-demo" style="width: 30%; position: absolute;z-index: 999;right: 40px; top: 53px">-->
+			<!--<el-button style="width: 80px; float: right; margin-top: 13px; margin-right: -20px; background: #20a0ff; color: #ffffff" @click="buttoncli">全屏</el-button>-->
+		<!--</el-col>-->
 
 		<!--应用呈现区域-->
-		<el-col :span="24" class="application">
-			<!--导航栏-->
-			<el-col :span="24" class="subheader">
-				<!--应用图标-->
-				<el-col :span="12" class="el-menu-demo">
-					<span><img src="../assets/logo_nav/log0_14.png" style="margin-top: 18px; margin-left: 20px;"/></span>
-				</el-col>
-				<!--二级导航-->
-				<el-col :span="12" class="nav-midle">
-					<el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect1">
-						<el-menu-item index="1">Overview</el-menu-item>
-						<el-menu-item index="1">Campaign</el-menu-item>
-						<el-menu-item index="3">Analytics</el-menu-item>
-					</el-menu>
-				</el-col>
-			</el-col>
-			<!--侧边导航栏-->
-			<el-col :span="24" class="main">
-				<aside :class="collapsed?'menu-collapsed':'menu-expanded'">
-					<el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect"
-							 unique-opened router v-show="!collapsed">
-						<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
-							<el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path" style="padding-left: 32px"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
-						</template>
-					</el-menu>
-				</aside>
-				<!--应用内容-->
-				<section class="content-container">
-					<div id="canvasContentDiv" class="grid-content bg-purple-light">
-						<el-col :span="24" class="breadcrumb-container" style="height: 50px; width: 200px;">
-							<strong class="title">{{$route.name}}</strong>
-							<el-breadcrumb separator="/" class="breadcrumb-inner" style="font-size: 25px;">
-								<el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
-									{{ item.name }}
-								</el-breadcrumb-item>
-							</el-breadcrumb>
-						</el-col>
-						<el-col :span="24" class="content-wrapper" style="background: #EEF1F6">
-							<transition name="fade" mode="out-in">
-								<router-view></router-view>
-							</transition>
-						</el-col>
+		<!--<el-col :span="24" class="application">-->
+		<!--导航栏-->
+		<!--<el-col :span="24" class="subheader">-->
+			<!--&lt;!&ndash;应用图标&ndash;&gt;-->
+			<!--<el-col :span="12" class="el-menu-demo">-->
+				<!--<span><img src="../assets/logo_nav/log0_14.png" style="margin-top: 18px; margin-left: 20px;"/></span>-->
+			<!--</el-col>-->
+			<!--&lt;!&ndash;二级导航&ndash;&gt;-->
+			<!--<el-col :span="12" class="nav-midle">-->
+				<!--<el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect1">-->
+					<!--<el-menu-item index="1">Overview</el-menu-item>-->
+					<!--<el-menu-item index="1">Campaign</el-menu-item>-->
+					<!--<el-menu-item index="3">Analytics</el-menu-item>-->
+				<!--</el-menu>-->
+			<!--</el-col>-->
+		<!--</el-col>-->
+		<!--侧边导航栏-->
+		<el-col :span="24" class="main">
+			<!--<aside :class="collapsed?'menu-collapsed':'menu-expanded'">-->
+				<!--<el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect"-->
+						 <!--unique-opened router v-show="!collapsed">-->
+					<!--<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">-->
+						<!--<el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path" style="padding-left: 32px"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>-->
+					<!--</template>-->
+				<!--</el-menu>-->
+			<!--</aside>-->
+			<!--应用内容-->
+			<section class="content-container">
+				<div id="drag" class="drag" style="z-index: 1">
+					<div class="title">
+						<h2>可拖动窗口1</h2>
+						<div>
+							<a class="min" href="javascript:" title="最小化"></a>
+							<a class="max" href="javascript:" title="最大化"></a>
+							<a class="revert" href="javascript:" title="还原"></a>
+							<a class="close" href="javascript:" title="关闭"></a>
+						</div>
 					</div>
-				</section>
-			</el-col>
+					<div class="resizeL"></div>
+					<div class="resizeT"></div>
+					<div class="resizeR"></div>
+					<div class="resizeB"></div>
+					<div class="resizeLT"></div>
+					<div class="resizeTR"></div>
+					<div class="resizeBR"></div>
+					<div class="resizeLB"></div>
+					<div class="content">
+						<div id="canvasContentDiv" class="grid-content bg-purple-light">
+							<el-col :span="24" class="content-wrapper" style="background: #EEF1F6">
+								<transition name="fade" mode="out-in">
+									<router-view></router-view>
+								</transition>
+							</el-col>
+						</div>
+					</div>
+				</div>
+			</section>
 		</el-col>
+		<!--</el-col>-->
 	</el-row>
 </template>
 
 <script>
-	import screenfull from 'screenfull'
 	export default {
 		data() {
 			return {
@@ -224,20 +236,152 @@
 				dialogFormVisible2: false,
 				slideTableVisible: false,
 				show2: false,
-				value1: false
+				value1: false,
+				dragMinWidth: 250,
+				dragMinHeight: 124
 			}
 		},
 		methods: {
-			buttoncli() {
-				const el = document.getElementById('canvasContentDiv');
-				if (!screenfull.enabled) {
-					this.$message({
-						message: '不支持全屏',
-						type: 'warning'
-					});
+			byId: function (id) {
+				return typeof id === "string" ? document.getElementById(id): id;
+			},
+			byTagName: function (elem, obj) {
+				return (obj || document).getElementsByTagName(elem)
+			},
+			byClass: function(sClass, oParent) {
+				var aClass = [];
+				var reClass = new RegExp("(^| )" + sClass + "( |$)");
+				var aElem = this.byTagName("*", oParent);
+				for (var i = 0; i < aElem.length; i++) reClass.test(aElem[i].className) && aClass.push(aElem[i]);
+				return aClass;
+			},
+			drag: function(oDrag, handle) {
+				var that = this;
+				var disX = 0;
+				var disY = 0;
+				var oMin = this.byClass("min", oDrag)[0];
+				var oMax = this.byClass("max", oDrag)[0];
+				var oRevert = this.byClass("revert", oDrag)[0];
+				var oClose = this.byClass("close", oDrag)[0];
+				handle = handle || oDrag;
+				handle.style.cursor = "move";
+				handle.onmousedown = function (event) {
+					var event = event || window.event;
+					disX = event.clientX - oDrag.offsetLeft;
+					disY = event.clientY - oDrag.offsetTop;
+					document.onmousemove = function (event) {
+						var event = event || window.event;
+						var iL = event.clientX - disX;
+						var iT = event.clientY - disY;
+						var maxL = document.documentElement.clientWidth - oDrag.offsetWidth;
+						var maxT = document.documentElement.clientHeight - oDrag.offsetHeight;
+						iL <= 0 && (iL = 0);
+						iT <= 0 && (iT = 0);
+						iL >= maxL && (iL = maxL);
+						iT >= maxT && (iT = maxT);
+						oDrag.style.left = iL + "px";
+						oDrag.style.top = iT + "px";
+						return false
+					};
+					document.onmouseup = function () {
+						document.onmousemove = null;
+						document.onmouseup = null;
+						this.releaseCapture && this.releaseCapture()
+					};
+					this.setCapture && this.setCapture();
+					return false
+				};
+				//最大化按钮
+				oMax.onclick = function () {
+					oDrag.style.top = 0;
+					oDrag.style.left = 0;
+					oDrag.style.width = document.documentElement.clientWidth - 2 + "px";
+					oDrag.style.height = document.documentElement.clientHeight - 2 + "px";
+					this.style.display = "none";
+					oRevert.style.display = "block";
+				};
+				//还原按钮
+				oRevert.onclick = function () {
+					// oDrag.style.width = this.dragMinWidth + "px";
+					// oDrag.style.height = this.dragMinHeight + "px";
+					oDrag.style.width = 500 + "px";
+					oDrag.style.height = 300 + "px";
+					oDrag.style.left = (document.documentElement.clientWidth - oDrag.offsetWidth) / 2 + "px";
+					oDrag.style.top = (document.documentElement.clientHeight - oDrag.offsetHeight) / 2 + "px";
+					this.style.display = "none";
+					oMax.style.display = "block";
+				};
+				//最小化按钮
+				oMin.onclick = oClose.onclick = function () {
+					oDrag.style.display = "none";
+					var oA = document.createElement("a");
+					oA.className = "open";
+					oA.href = "javascript:;";
+					oA.title = "还原";
+
+					document.body.appendChild(oA);
+
+					oA.style.background = "red";
+					oA.style.position = "absolute";
+					oA.style.top = "10px";
+					oA.style.left = "125px";
+					oA.style.width = "34px";
+					oA.style.height = "34px";
+
+					//绑定点击事件
+					oA.onclick = function () {
+						oDrag.style.display = "block";
+						document.body.removeChild(this);
+						this.onclick = null;
+					};
+				};
+				//阻止冒泡
+				oMin.onmousedown = oMax.onmousedown = oClose.onmousedown = function (event) {
+					this.onfocus = function () { this.blur() };
+					(event || window.event).cancelBubble = true
+				};
+			},
+			 resize: function(oParent, handle, isLeft, isTop, lockX, lockY) {
+				handle.onmousedown = function (event) {
+					var event = event || window.event;
+					var disX = event.clientX - handle.offsetLeft;
+					var disY = event.clientY - handle.offsetTop;
+					var iParentTop = oParent.offsetTop;
+					var iParentLeft = oParent.offsetLeft;
+					var iParentWidth = oParent.offsetWidth;
+					var iParentHeight = oParent.offsetHeight;
+					document.onmousemove = function (event) {
+						var event = event || window.event;
+						var iL = event.clientX - disX;
+						var iT = event.clientY - disY;
+						var maxW = document.documentElement.clientWidth - oParent.offsetLeft - 2;
+						var maxH = document.documentElement.clientHeight - oParent.offsetTop - 2;
+						var iW = isLeft ? iParentWidth - iL : handle.offsetWidth + iL;
+						var iH = isTop ? iParentHeight - iT : handle.offsetHeight + iT;
+
+						isLeft && (oParent.style.left = iParentLeft + iL + "px");
+						isTop && (oParent.style.top = iParentTop + iT + "px");
+
+						iW < 500 && (iW = 500);
+
+						iW > maxW && (iW = maxW);
+
+						lockX || (oParent.style.width = iW + "px");
+
+						iH < 300 && (iH = 300);
+
+						iH > maxH && (iH = maxH);
+
+						lockY || (oParent.style.height = iH + "px");
+
+						if ((isLeft && iW == 500) || (isTop && iH == 300)) document.onmousemove = null;
+						return false;
+					};
+					document.onmouseup = function () {
+						document.onmousemove = null;
+						document.onmouseup = null;
+					};
 					return false;
-				} else {
-					screenfull.request(el);
 				}
 			},
 			deleteItem() {
@@ -246,17 +390,17 @@
 			onSubmit() {
 				console.log('submit!');
 			},
-			handleopen() {
-				console.log('handleopen');
-			},
-			handleclose() {
-				console.log('handleclose');
-			},
-			handleselect: function (a, b) {
-			},
-			handleSelect1(key, keyPath) {
-				console.log(key, keyPath);
-			},
+			// handleopen() {
+			// 	console.log('handleopen');
+			// },
+			// handleclose() {
+			// 	console.log('handleclose');
+			// },
+			// handleselect: function (a, b) {
+			// },
+			// handleSelect1(key, keyPath) {
+			// 	console.log(key, keyPath);
+			// },
 			handleIconClick(ev) {
 				console.log(ev);
 			},
@@ -276,17 +420,47 @@
 			collapse:function(){
 				this.collapsed=!this.collapsed;
 			},
-			showMenu(i,status){
-				this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-'+i)[0].style.display=status?'block':'none';
-			}
+			// showMenu(i,status){
+			// 	this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-'+i)[0].style.display=status?'block':'none';
+			// }
 		},
 		mounted() {
+			let that = this;
 			let user = sessionStorage.getItem('user');
 
 			if (user) {
 				user = JSON.parse(user);
 				this.sysUserName = user.name || '';
 				this.sysUserAvatar = user.avatar || '';
+			}
+
+			window.onload = window.onresize = function () {
+				var oDrag = document.getElementById("drag");
+				var oTitle = that.byClass("title", oDrag)[0];
+				var oL = that.byClass("resizeL", oDrag)[0];
+				var oT = that.byClass("resizeT", oDrag)[0];
+				var oR = that.byClass("resizeR", oDrag)[0];
+				var oB = that.byClass("resizeB", oDrag)[0];
+				var oLT = that.byClass("resizeLT", oDrag)[0];
+				var oTR = that.byClass("resizeTR", oDrag)[0];
+				var oBR = that.byClass("resizeBR", oDrag)[0];
+				var oLB = that.byClass("resizeLB", oDrag)[0];
+
+				that.drag(oDrag, oTitle);
+
+				//四角
+				that.resize(oDrag, oLT, true, true, false, false);
+				that.resize(oDrag, oTR, false, true, false, false);
+				that.resize(oDrag, oBR, false, false, false, false);
+				that.resize(oDrag, oLB, true, false, false, false);
+
+				//四边
+				that.resize(oDrag, oL, true, false, false, true);
+				that.resize(oDrag, oT, false, true, true, false);
+				that.resize(oDrag, oR, false, false, false, true);
+				that.resize(oDrag, oB, false, false, true, false);
+				oDrag.style.left = (document.documentElement.clientWidth - oDrag.offsetWidth) / 2 + "px";
+				oDrag.style.top = (document.documentElement.clientHeight - oDrag.offsetHeight) / 2 + "px";
 			}
 		}
 	}
@@ -383,7 +557,7 @@
 			display: flex;
 			// background: #324057;
 			position: absolute;
-			top: 114px;
+			top: 52px;
 			bottom: 0px;
 			overflow: hidden;
 			background:#DFDFDF;
@@ -522,5 +696,173 @@
 	}
 	.myDrawer {
 		margin-top: 52px;
+	}
+
+	.drag {
+		position: absolute;
+		top: 100px;
+		left: 100px;
+		width: 500px;
+		height: 300px;
+		background: #e9e9e9;
+		border: 1px solid #444;
+		border-radius: 5px;
+		box-shadow: 0 1px 3px 2px #666;
+	}
+
+	.drag .title {
+		position: relative;
+		height: 27px;
+		margin: 5px;
+	}
+
+	.drag .title h2 {
+		font-size: 14px;
+		height: 27px;
+		line-height: 24px;
+		border-bottom: 1px solid #A1B4B0;
+	}
+
+	.drag .title div {
+		position: absolute;
+		height: 19px;
+		top: 2px;
+		right: 0;
+	}
+
+	.drag .title a,
+	a.open {
+		float: left;
+		width: 21px;
+		height: 19px;
+		display: block;
+		margin-left: 5px;
+		background: url(../assets/tool.png) no-repeat;
+	}
+	a.open {
+		position: absolute;
+		top: 10px;
+		left: 50%;
+		margin-left: -10px;
+		background-position: 0 0;
+	}
+
+	a.open:hover {
+		background-position: 0 -29px;
+	}
+
+	.drag .title a.min {
+		background-position: -29px 0;
+	}
+
+	.drag .title a.min:hover {
+		background-position: -29px -29px;
+	}
+
+	.drag .title a.max {
+		background-position: -60px 0;
+	}
+
+	.drag .title a.max:hover {
+		background-position: -60px -29px;
+	}
+
+	.drag .title a.revert {
+		background-position: -149px 0;
+		display: none;
+	}
+
+	.drag .title a.revert:hover {
+		background-position: -149px -29px;
+	}
+
+	.drag .title a.close {
+		background-position: -89px 0;
+	}
+
+	.drag .title a.close:hover {
+		background-position: -89px -29px;
+	}
+
+	.drag .content {
+		overflow: auto;
+		margin: 0 5px;
+	}
+
+	.drag .resizeBR {
+		position: absolute;
+		width: 14px;
+		height: 14px;
+		right: 0;
+		bottom: 0;
+		overflow: hidden;
+		cursor: nw-resize;
+		background: url(../assets/resize.png) no-repeat;
+	}
+	.drag .resizeL,
+	.drag .resizeT,
+	.drag .resizeR,
+	.drag .resizeB,
+	.drag .resizeLT,
+	.drag .resizeTR,
+	.drag .resizeLB {
+		position: absolute;
+		background: #000;
+		overflow: hidden;
+		opacity: 0;
+		filter: alpha(opacity=0);
+	}
+
+	.drag .resizeL,
+	.drag .resizeR {
+		top: 0;
+		width: 5px;
+		height: 100%;
+		cursor: w-resize;
+	}
+
+	.drag .resizeR {
+		right: 0;
+	}
+
+	.drag .resizeT,
+	.drag .resizeB {
+		width: 100%;
+		height: 5px;
+		cursor: n-resize;
+	}
+
+	.drag .resizeT {
+		top: 0;
+	}
+
+	.drag .resizeB {
+		bottom: 0;
+	}
+
+	.drag .resizeLT,
+	.drag .resizeTR,
+	.drag .resizeLB {
+		width: 8px;
+		height: 8px;
+		background: #FF0;
+	}
+
+	.drag .resizeLT {
+		top: 0;
+		left: 0;
+		cursor: nw-resize;
+	}
+
+	.drag .resizeTR {
+		top: 0;
+		right: 0;
+		cursor: ne-resize;
+	}
+
+	.drag .resizeLB {
+		left: 0;
+		bottom: 0;
+		cursor: ne-resize;
 	}
 </style>

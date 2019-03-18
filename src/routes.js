@@ -2,7 +2,8 @@ import Login from './views/Login.vue'
 import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
 import HomePage from './views/HomePage'
-import Page1 from './views/nav3/echarts.vue'
+import Echarts from './views/nav3/echarts.vue'
+import Page1 from "./views/nav3/Page1.vue"
 import Page2 from "./views/nav3/Page2.vue"
 import Page3 from "./views/nav3/Page3.vue"
 import Page4 from './views/nav3/Page4.vue'
@@ -24,11 +25,11 @@ let routes = [
     {
         path: '/',
         component: Home,
-        name: 'Data overview',
+        name: '',
         iconCls: 'fa fa-bar-chart',
         leaf: true, //只有一个节点
         children: [
-            { path: '/echarts', component: Page1, name: '' }
+            { path: '/page1', component: Page1, name: '' }
         ]
     },
     {

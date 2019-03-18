@@ -88,7 +88,7 @@
                 });
               } else {
                 sessionStorage.setItem('user', JSON.stringify(user));
-                this.$router.push({ path: '/echarts' });
+                this.$router.push({ path: '/page1' });
               }
             });
           } else {
