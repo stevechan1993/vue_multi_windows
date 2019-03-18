@@ -5,7 +5,13 @@
 
 <script>
     export default {
-        name: "Page2"
+        name: "Page2",
+        methods: {
+
+        },
+        mounted() {
+            console.log('hello');
+        }
     }
 </script>
 
