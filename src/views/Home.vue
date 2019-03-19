@@ -16,16 +16,39 @@
 							</el-input>
 						</el-col>
 						<el-col :span="24" style="margin-top: 50px;">
-							<span class="taskspan"><img src="../assets/logo_menu/logo_2.png" style="padding:15px;" /></span>
-							<span class="taskspan"><img src="../assets/logo_menu/logo_3.png" style="padding:15px;" /></span>
-							<span class="taskspan"><img src="../assets/logo_menu/logo_4.png" style="padding:15px;" /></span>
-							<span class="taskspan"><img src="../assets/logo_menu/logo_5.png" style="padding:15px;" /></span>
-							<span class="taskspan"><img src="../assets/logo_menu/logo_6.png" style="padding:15px;" /></span>
-							<span class="taskspan"><img src="../assets/logo_menu/logo_7.png" style="padding:15px;" /></span>
-							<span class="taskspan"><img src="../assets/logo_menu/logo_8.png" style="padding:15px;" /></span>
-							<span class="taskspan"><img src="../assets/logo_menu/logo_9.png" style="padding:15px;" /></span>
-							<span class="taskspan"><img src="../assets/logo_menu/logo_10.png" style="padding:15px;" /></span>
-							<span class="taskspan"><img src="../assets/logo_menu/logo_11.png" style="padding:15px;" /></span>
+							<span class="taskspan">
+								<!--<router-link :to="">-->
+									<!--<img src="../assets/logo_menu/logo_2.png" style="padding:15px;" />-->
+								<!--</router-link>-->
+								<a href="#/App"><img src="../assets/logo_menu/logo_2.png" style="padding:15px;" /></a>
+							</span>
+							<span class="taskspan">
+								<a href="#"><img src="../assets/logo_menu/logo_3.png" style="padding:15px;" /></a>
+							</span>
+							<span class="taskspan">
+								<a href="#"><img src="../assets/logo_menu/logo_4.png" style="padding:15px;" /></a>
+							</span>
+							<span class="taskspan">
+								<a><img src="../assets/logo_menu/logo_5.png" style="padding:15px;" /></a>
+							</span>
+							<span class="taskspan">
+								<a><img src="../assets/logo_menu/logo_6.png" style="padding:15px;" /></a>
+							</span>
+							<span class="taskspan">
+								<a><img src="../assets/logo_menu/logo_7.png" style="padding:15px;" /></a>
+							</span>
+							<span class="taskspan">
+								<a><img src="../assets/logo_menu/logo_8.png" style="padding:15px;" /></a>
+							</span>
+							<span class="taskspan">
+								<a><img src="../assets/logo_menu/logo_9.png" style="padding:15px;" /></a>
+							</span>
+							<span class="taskspan">
+								<a><img src="../assets/logo_menu/logo_10.png" style="padding:15px;" /></a>
+							</span>
+							<span class="taskspan">
+								<a><img src="../assets/logo_menu/logo_11.png" style="padding:15px;" /></a>
+							</span>
 						</el-col>
 					</el-dropdown-menu>
 				</el-dropdown>
@@ -34,9 +57,10 @@
 			<el-col :span="6">
 				<span class="taskspan">
 					<Badge dot>
-        				<a href="#/Page1" class="demo-badge">
-							<!--<img src="../assets/logo_nav/log0_12.png" />-->
-						</a>
+						<router-link to="/App" class="demo-badge"></router-link>
+        				<!--<a href="#/App" class="demo-badge">-->
+							<!--&lt;!&ndash;<img src="../assets/logo_nav/log0_12.png" />&ndash;&gt;-->
+						<!--</a>-->
     				</Badge>
 				</span>
 				<span class="taskspan">
@@ -157,34 +181,36 @@
 			<!--</aside>-->
 			<!--应用内容-->
 			<section class="content-container">
-				<div id="drag" class="drag" style="z-index: 1">
-					<div class="title">
-						<h2>可拖动窗口1</h2>
-						<div>
-							<a class="min" href="javascript:" title="最小化"></a>
-							<a class="max" href="javascript:" title="最大化"></a>
-							<a class="revert" href="javascript:" title="还原"></a>
-							<a class="close" href="javascript:" title="关闭"></a>
-						</div>
-					</div>
-					<div class="resizeL"></div>
-					<div class="resizeT"></div>
-					<div class="resizeR"></div>
-					<div class="resizeB"></div>
-					<div class="resizeLT"></div>
-					<div class="resizeTR"></div>
-					<div class="resizeBR"></div>
-					<div class="resizeLB"></div>
-					<div class="content">
-						<div id="canvasContentDiv" class="grid-content bg-purple-light">
-							<el-col :span="24" class="content-wrapper" style="background: #EEF1F6">
-								<transition name="fade" mode="out-in">
-									<router-view></router-view>
-								</transition>
-							</el-col>
-						</div>
-					</div>
-				</div>
+				<!--<div id="drag" class="drag" style="z-index: 1">-->
+					<!--<div class="title">-->
+						<!--<h2>可拖动窗口1</h2>-->
+						<!--<div>-->
+							<!--<a class="min" href="javascript:" title="最小化"></a>-->
+							<!--<a class="max" href="javascript:" title="最大化"></a>-->
+							<!--<a class="revert" href="javascript:" title="还原"></a>-->
+							<!--<a class="close" href="javascript:" title="关闭"></a>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="resizeL"></div>-->
+					<!--<div class="resizeT"></div>-->
+					<!--<div class="resizeR"></div>-->
+					<!--<div class="resizeB"></div>-->
+					<!--<div class="resizeLT"></div>-->
+					<!--<div class="resizeTR"></div>-->
+					<!--<div class="resizeBR"></div>-->
+					<!--<div class="resizeLB"></div>-->
+					<!--<div class="content">-->
+						<!--<div id="canvasContentDiv" class="grid-content bg-purple-light">-->
+							<!--<el-col :span="24" class="content-wrapper" style="background: #EEF1F6">-->
+								<!--<transition name="fade" mode="out-in">-->
+									<!--<router-view></router-view>-->
+								<!--</transition>-->
+							<!--</el-col>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+				<router-view></router-view>
+				<router-view name="1"></router-view>
 			</section>
 		</el-col>
 		<!--</el-col>-->
@@ -256,7 +282,6 @@
 				return aClass;
 			},
 			drag: function(oDrag, handle) {
-				var that = this;
 				var disX = 0;
 				var disY = 0;
 				var oMin = this.byClass("min", oDrag)[0];
@@ -434,34 +459,34 @@
 				this.sysUserAvatar = user.avatar || '';
 			}
 
-			window.onload = window.onresize = function () {
-				var oDrag = document.getElementById("drag");
-				var oTitle = that.byClass("title", oDrag)[0];
-				var oL = that.byClass("resizeL", oDrag)[0];
-				var oT = that.byClass("resizeT", oDrag)[0];
-				var oR = that.byClass("resizeR", oDrag)[0];
-				var oB = that.byClass("resizeB", oDrag)[0];
-				var oLT = that.byClass("resizeLT", oDrag)[0];
-				var oTR = that.byClass("resizeTR", oDrag)[0];
-				var oBR = that.byClass("resizeBR", oDrag)[0];
-				var oLB = that.byClass("resizeLB", oDrag)[0];
-
-				that.drag(oDrag, oTitle);
-
-				//四角
-				that.resize(oDrag, oLT, true, true, false, false);
-				that.resize(oDrag, oTR, false, true, false, false);
-				that.resize(oDrag, oBR, false, false, false, false);
-				that.resize(oDrag, oLB, true, false, false, false);
-
-				//四边
-				that.resize(oDrag, oL, true, false, false, true);
-				that.resize(oDrag, oT, false, true, true, false);
-				that.resize(oDrag, oR, false, false, false, true);
-				that.resize(oDrag, oB, false, false, true, false);
-				oDrag.style.left = (document.documentElement.clientWidth - oDrag.offsetWidth) / 2 + "px";
-				oDrag.style.top = (document.documentElement.clientHeight - oDrag.offsetHeight) / 2 + "px";
-			}
+			// window.onload = window.onresize = function () {
+			// 	var oDrag = document.getElementById("drag");
+			// 	var oTitle = that.byClass("title", oDrag)[0];
+			// 	var oL = that.byClass("resizeL", oDrag)[0];
+			// 	var oT = that.byClass("resizeT", oDrag)[0];
+			// 	var oR = that.byClass("resizeR", oDrag)[0];
+			// 	var oB = that.byClass("resizeB", oDrag)[0];
+			// 	var oLT = that.byClass("resizeLT", oDrag)[0];
+			// 	var oTR = that.byClass("resizeTR", oDrag)[0];
+			// 	var oBR = that.byClass("resizeBR", oDrag)[0];
+			// 	var oLB = that.byClass("resizeLB", oDrag)[0];
+			//
+			// 	that.drag(oDrag, oTitle);
+			//
+			// 	//四角
+			// 	that.resize(oDrag, oLT, true, true, false, false);
+			// 	that.resize(oDrag, oTR, false, true, false, false);
+			// 	that.resize(oDrag, oBR, false, false, false, false);
+			// 	that.resize(oDrag, oLB, true, false, false, false);
+			//
+			// 	//四边
+			// 	that.resize(oDrag, oL, true, false, false, true);
+			// 	that.resize(oDrag, oT, false, true, true, false);
+			// 	that.resize(oDrag, oR, false, false, false, true);
+			// 	that.resize(oDrag, oB, false, false, true, false);
+			// 	oDrag.style.left = (document.documentElement.clientWidth - oDrag.offsetWidth) / 2 + "px";
+			// 	oDrag.style.top = (document.documentElement.clientHeight - oDrag.offsetHeight) / 2 + "px";
+			// }
 		}
 	}
 </script>
@@ -705,9 +730,9 @@
 		width: 500px;
 		height: 300px;
 		background: #e9e9e9;
-		border: 1px solid #444;
-		border-radius: 5px;
-		box-shadow: 0 1px 3px 2px #666;
+		/*border: 1px solid #444;*/
+		/*border-radius: 5px;*/
+		/*box-shadow: 0 1px 3px 2px #666;*/
 	}
 
 	.drag .title {

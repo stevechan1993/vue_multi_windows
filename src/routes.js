@@ -8,6 +8,7 @@ import Page2 from "./views/nav3/Page2.vue"
 import Page3 from "./views/nav3/Page3.vue"
 import Page4 from './views/nav3/Page4.vue'
 import Page5 from './views/nav3/Page5.vue'
+import App from './views/app.vue'
 
 let routes = [
     {
@@ -76,6 +77,16 @@ let routes = [
         path: '*',
         hidden: true,
         redirect: { path: '/404' }
+    },
+    {
+        path: '/',
+        component: Home,
+        name: '',
+        iconCls: 'fa fa-address-card',
+        leaf: true,
+        children: [
+            { path: '/app', component: App, name: ''}
+        ]
     }
 ];
 
