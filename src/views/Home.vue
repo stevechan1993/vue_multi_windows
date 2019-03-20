@@ -54,33 +54,33 @@
 				</el-dropdown>
 			</el-col>
 			<!--任务栏-->
-			<el-col :span="6">
+			<el-col :span="6" style="margin-left: 20px">
 				<span class="taskspan">
 					<Badge dot>
-						<router-link to="/App" class="demo-badge"></router-link>
-        				<!--<a href="#/App" class="demo-badge">-->
-							<!--&lt;!&ndash;<img src="../assets/logo_nav/log0_12.png" />&ndash;&gt;-->
-						<!--</a>-->
+						<router-link to="/App" class="demo-badge">
+							<img src="../assets/logo_nav/log0_12.png" />
+						</router-link>
     				</Badge>
 				</span>
 				<span class="taskspan">
-					<a href="#/Page2" class="demo-badge">
-						<!--<img src="../assets/logo_nav/log0_13.png" />-->
-					</a>
+					<router-link to="/Page2" class="demo-badge">
+						<img src="../assets/logo_nav/log0_13.png" />
+					</router-link>
 				</span>
 				<span class="taskspan">
-					<a href="#/Page3" class="demo-badge">
-						<!--<img src="../assets/logo_nav/log0_14.png" />-->
-					</a>
+					<router-link to="/Page3" class="demo-badge">
+						<img src="../assets/logo_nav/log0_14.png" />
+					</router-link>
 				</span>
 				<span class="taskspan">
-					<a href="#/Page4" class="demo-badge">
-						<!--<img src="../assets/logo_nav/log0_nav_15.png" />-->
-					</a>
+					<router-link to="/Page4" class="demo-badge">
+						<img src="../assets/logo_nav/log0_nav_15.png" />
+					</router-link>
 				</span>
 			</el-col>
 			<!--用户信息-->
 			<el-col :span="6" class="userinfo" style="height: 52px; width: 100px; margin-right: 0px; float: right">
+				<Divider type="vertical" style="height: 20px; top: -20px; background: #fff; opacity: 0.5;"/>
 				<el-dropdown trigger="click">
 					<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" style="border-radius: 50px;"/></span>
 					<el-dropdown-menu slot="dropdown" style="width: 300px; height: 600px; background: #3e3e3e; opacity: 0.8; margin-top: 0px; border: 0px">
@@ -268,147 +268,6 @@
 			}
 		},
 		methods: {
-			byId: function (id) {
-				return typeof id === "string" ? document.getElementById(id): id;
-			},
-			byTagName: function (elem, obj) {
-				return (obj || document).getElementsByTagName(elem)
-			},
-			byClass: function(sClass, oParent) {
-				var aClass = [];
-				var reClass = new RegExp("(^| )" + sClass + "( |$)");
-				var aElem = this.byTagName("*", oParent);
-				for (var i = 0; i < aElem.length; i++) reClass.test(aElem[i].className) && aClass.push(aElem[i]);
-				return aClass;
-			},
-			drag: function(oDrag, handle) {
-				var disX = 0;
-				var disY = 0;
-				var oMin = this.byClass("min", oDrag)[0];
-				var oMax = this.byClass("max", oDrag)[0];
-				var oRevert = this.byClass("revert", oDrag)[0];
-				var oClose = this.byClass("close", oDrag)[0];
-				handle = handle || oDrag;
-				handle.style.cursor = "move";
-				handle.onmousedown = function (event) {
-					var event = event || window.event;
-					disX = event.clientX - oDrag.offsetLeft;
-					disY = event.clientY - oDrag.offsetTop;
-					document.onmousemove = function (event) {
-						var event = event || window.event;
-						var iL = event.clientX - disX;
-						var iT = event.clientY - disY;
-						var maxL = document.documentElement.clientWidth - oDrag.offsetWidth;
-						var maxT = document.documentElement.clientHeight - oDrag.offsetHeight;
-						iL <= 0 && (iL = 0);
-						iT <= 0 && (iT = 0);
-						iL >= maxL && (iL = maxL);
-						iT >= maxT && (iT = maxT);
-						oDrag.style.left = iL + "px";
-						oDrag.style.top = iT + "px";
-						return false
-					};
-					document.onmouseup = function () {
-						document.onmousemove = null;
-						document.onmouseup = null;
-						this.releaseCapture && this.releaseCapture()
-					};
-					this.setCapture && this.setCapture();
-					return false
-				};
-				//最大化按钮
-				oMax.onclick = function () {
-					oDrag.style.top = 0;
-					oDrag.style.left = 0;
-					oDrag.style.width = document.documentElement.clientWidth - 2 + "px";
-					oDrag.style.height = document.documentElement.clientHeight - 2 + "px";
-					this.style.display = "none";
-					oRevert.style.display = "block";
-				};
-				//还原按钮
-				oRevert.onclick = function () {
-					// oDrag.style.width = this.dragMinWidth + "px";
-					// oDrag.style.height = this.dragMinHeight + "px";
-					oDrag.style.width = 500 + "px";
-					oDrag.style.height = 300 + "px";
-					oDrag.style.left = (document.documentElement.clientWidth - oDrag.offsetWidth) / 2 + "px";
-					oDrag.style.top = (document.documentElement.clientHeight - oDrag.offsetHeight) / 2 + "px";
-					this.style.display = "none";
-					oMax.style.display = "block";
-				};
-				//最小化按钮
-				oMin.onclick = oClose.onclick = function () {
-					oDrag.style.display = "none";
-					var oA = document.createElement("a");
-					oA.className = "open";
-					oA.href = "javascript:;";
-					oA.title = "还原";
-
-					document.body.appendChild(oA);
-
-					oA.style.background = "red";
-					oA.style.position = "absolute";
-					oA.style.top = "10px";
-					oA.style.left = "125px";
-					oA.style.width = "34px";
-					oA.style.height = "34px";
-
-					//绑定点击事件
-					oA.onclick = function () {
-						oDrag.style.display = "block";
-						document.body.removeChild(this);
-						this.onclick = null;
-					};
-				};
-				//阻止冒泡
-				oMin.onmousedown = oMax.onmousedown = oClose.onmousedown = function (event) {
-					this.onfocus = function () { this.blur() };
-					(event || window.event).cancelBubble = true
-				};
-			},
-			 resize: function(oParent, handle, isLeft, isTop, lockX, lockY) {
-				handle.onmousedown = function (event) {
-					var event = event || window.event;
-					var disX = event.clientX - handle.offsetLeft;
-					var disY = event.clientY - handle.offsetTop;
-					var iParentTop = oParent.offsetTop;
-					var iParentLeft = oParent.offsetLeft;
-					var iParentWidth = oParent.offsetWidth;
-					var iParentHeight = oParent.offsetHeight;
-					document.onmousemove = function (event) {
-						var event = event || window.event;
-						var iL = event.clientX - disX;
-						var iT = event.clientY - disY;
-						var maxW = document.documentElement.clientWidth - oParent.offsetLeft - 2;
-						var maxH = document.documentElement.clientHeight - oParent.offsetTop - 2;
-						var iW = isLeft ? iParentWidth - iL : handle.offsetWidth + iL;
-						var iH = isTop ? iParentHeight - iT : handle.offsetHeight + iT;
-
-						isLeft && (oParent.style.left = iParentLeft + iL + "px");
-						isTop && (oParent.style.top = iParentTop + iT + "px");
-
-						iW < 500 && (iW = 500);
-
-						iW > maxW && (iW = maxW);
-
-						lockX || (oParent.style.width = iW + "px");
-
-						iH < 300 && (iH = 300);
-
-						iH > maxH && (iH = maxH);
-
-						lockY || (oParent.style.height = iH + "px");
-
-						if ((isLeft && iW == 500) || (isTop && iH == 300)) document.onmousemove = null;
-						return false;
-					};
-					document.onmouseup = function () {
-						document.onmousemove = null;
-						document.onmouseup = null;
-					};
-					return false;
-				}
-			},
 			deleteItem() {
 				console.log("delete");
 			},
@@ -458,35 +317,6 @@
 				this.sysUserName = user.name || '';
 				this.sysUserAvatar = user.avatar || '';
 			}
-
-			// window.onload = window.onresize = function () {
-			// 	var oDrag = document.getElementById("drag");
-			// 	var oTitle = that.byClass("title", oDrag)[0];
-			// 	var oL = that.byClass("resizeL", oDrag)[0];
-			// 	var oT = that.byClass("resizeT", oDrag)[0];
-			// 	var oR = that.byClass("resizeR", oDrag)[0];
-			// 	var oB = that.byClass("resizeB", oDrag)[0];
-			// 	var oLT = that.byClass("resizeLT", oDrag)[0];
-			// 	var oTR = that.byClass("resizeTR", oDrag)[0];
-			// 	var oBR = that.byClass("resizeBR", oDrag)[0];
-			// 	var oLB = that.byClass("resizeLB", oDrag)[0];
-			//
-			// 	that.drag(oDrag, oTitle);
-			//
-			// 	//四角
-			// 	that.resize(oDrag, oLT, true, true, false, false);
-			// 	that.resize(oDrag, oTR, false, true, false, false);
-			// 	that.resize(oDrag, oBR, false, false, false, false);
-			// 	that.resize(oDrag, oLB, true, false, false, false);
-			//
-			// 	//四边
-			// 	that.resize(oDrag, oL, true, false, false, true);
-			// 	that.resize(oDrag, oT, false, true, true, false);
-			// 	that.resize(oDrag, oR, false, false, false, true);
-			// 	that.resize(oDrag, oB, false, false, true, false);
-			// 	oDrag.style.left = (document.documentElement.clientWidth - oDrag.offsetWidth) / 2 + "px";
-			// 	oDrag.style.top = (document.documentElement.clientHeight - oDrag.offsetHeight) / 2 + "px";
-			// }
 		}
 	}
 </script>
@@ -494,13 +324,11 @@
 <style scoped lang="scss">
 	@import '~scss_vars';
 	.demo-badge {
-		width: 34px;
-		height: 34px;
-		background: #eee;
-		border-radius: 6px;
+		width: 22px;
+		height: 22px;
+		position: relative;
+		top: -5px;
 		display: inline-block;
-		margin-top: 5px;
-		margin-left: 10px;
 	}
 
 	.container {
@@ -663,7 +491,7 @@
 	}
 	.taskspan {
 		position: relative;
-		top: 5px;
+		top: 10px;
 		padding-left:15px;
 	}
 	.button-img {

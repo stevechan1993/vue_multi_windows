@@ -10,25 +10,176 @@
             <div class="resizeBR"></div>
             <div class="resizeLB"></div>
             <Layout >
-                <Header>
-                    <div class="layout-logo"></div>
-                    <div class="title">
-                        <div>
-                            <a class="min" href="javascript:" title="最小化"></a>
-                            <a class="max" href="javascript:" title="最大化"></a>
-                            <a class="revert" href="javascript:" title="还原"></a>
-                            <a class="close" href="javascript:" title="关闭"></a>
-                        </div>
-                    </div>
+                <Header :style="{background: '#fff', height: '80px'}">
+                    <Row>
+                        <div class="title"></div>
+                    </Row>
+                    <Row>
+                        <!--Logo-->
+                        <Col span="4">
+                            <div class="layout-logo" style="background: #fff">
+                                <div style="float: left">
+                                    <img src="../assets/logo_topnav.png" style="margin-bottom: 7px" />
+                                </div>
+                                <div style="float: left; position: relative; left: 3px; top: -16px">
+                                    <a href="#">INEXBOT</a>
+                                </div>
+                            </div>
+                        </Col>
+                        <!--模式和状态-->
+                        <Col span="4">
+                            <Select v-model="model3" style="width:100px">
+                                <Option v-for="item in modeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                            </Select>
+                            <Select v-model="model3" style="width:100px">
+                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                            </Select>
+                        </Col>
+                        <!--操作-->
+                        <Col span="12">
+                            <Select v-model="model3" style="width:100px">
+                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                            </Select>
+                            <Select v-model="model3" style="width:100px">
+                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                            </Select>
+                            <Select v-model="model3" style="width:100px">
+                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                            </Select>
+                            <Select v-model="model3" style="width:100px">
+                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                            </Select>
+                            <Select v-model="model3" style="width:100px">
+                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                            </Select>
+                            <Select v-model="model3" style="width:100px">
+                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                            </Select>
+                        </Col>
+                        <!--窗口操作-->
+                        <Col span="4">
+                            <div class="win-opt">
+                                <div>
+                                    <a class="min" href="javascript:" title="最小化"></a>
+                                    <a class="max" href="javascript:" title="最大化"></a>
+                                    <a class="revert" href="javascript:" title="还原"></a>
+                                    <a class="close" href="javascript:" title="关闭"></a>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
                 </Header>
+                <Divider />
                 <Layout>
-                    <Sider hide-trigger :style="{background: '#fff'}"></Sider>
+                    <Sider hide-trigger :style="{background: '#fff', padding: '0 0 0 0'}">
+                        <Menu active-name="1-2" width="auto" :class="menuitemClasses">
+                            <MenuItem name="1-1">
+                                <Icon type="ios-navigate"></Icon>
+                                <span>工艺</span>
+                            </MenuItem>
+                            <MenuItem name="1-2">
+                                <Icon type="ios-navigate"></Icon>
+                                <span>变量</span>
+                            </MenuItem>
+                            <MenuItem name="1-3">
+                                <Icon type="ios-navigate"></Icon>
+                                <span>工程</span>
+                            </MenuItem>
+                            <MenuItem name="1-4">
+                                <Icon type="ios-navigate"></Icon>
+                                <span>程序</span>
+                            </MenuItem>
+                            <MenuItem name="1-5">
+                                <Icon type="ios-navigate"></Icon>
+                                <span>日志</span>
+                            </MenuItem>
+                            <MenuItem name="1-6">
+                                <Icon type="ios-navigate"></Icon>
+                                <span>实时</span>
+                            </MenuItem>
+                        </Menu>
+                    </Sider>
                     <Layout :style="{padding: '0 24px 24px'}">
-                        <Content id="test" :style="{padding: '24px', minHeight: '300px', height: '300px', background: '#fff'}">
-                            Content
+                        <Content id="test" :style="{padding: '0px', minHeight: '300px', height: '300px', background: '#fff'}">
+                            <!--总览-->
+                            <Row>
+                                <Col span="24" style="height: 64px">
+                                    <Row>
+                                        <Col span="12">
+                                            <div>工程预览</div>
+                                        </Col>
+                                        <Col span="12">
+                                            <div>共有3个程序</div>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                                <Divider />
+                            </Row>
+                            <!--操作-->
+                            <Row>
+                                <Col span="24" style="height: 86px;">
+                                    <Button :size="buttonSize" type="primary" style="float: right; margin-left: 10px">打开</Button>
+                                    <Button :size="buttonSize" type="primary" style="float: right">新建</Button>
+                                </Col>
+                                <Divider />
+                            </Row>
+                            <!--表格-->
+                            <Row>
+                                <Col span="24">
+                                    <Table height="600" :columns="columns1" :data="data2"></Table>
+                                </Col>
+                            </Row>
                         </Content>
                     </Layout>
-                    <Sider hide-trigger :style="{background: '#fff'}"></Sider>
+                    <Sider hide-trigger :style="{background: '#fff'}">
+                        <Row>
+                            <Col span="24" style="height: 60px">
+                                <div>启停控制</div>
+                            </Col>
+                            <Divider />
+                        </Row>
+                        <Row>
+                            <Col span="24" style="height: 120px">
+                                <Button type="primary" shape="circle" icon="ios-search"></Button>
+                                <Button type="primary" shape="circle" icon="ios-search"></Button>
+                            </Col>
+                            <Divider />
+                        </Row>
+                        <Row>
+                            <Col span="24" style="height: 60px;">
+                                <div>点动控制</div>
+                            </Col>
+                            <Divider />
+                        </Row>
+                        <Row>
+                            <Col span="24">
+                                S
+                                <Button>-</Button>
+                                <Button>+</Button>
+                                <br>
+                                L
+                                <Button>-</Button>
+                                <Button>+</Button>
+                                <br>
+                                U
+                                <Button>-</Button>
+                                <Button>+</Button>
+                                <br>
+                                R
+                                <Button>-</Button>
+                                <Button>+</Button>
+                                <br>
+                                B
+                                <Button>-</Button>
+                                <Button>+</Button>
+                                <br>
+                                T
+                                <Button>-</Button>
+                                <Button>+</Button>
+                                <br>
+                            </Col>
+                        </Row>
+                    </Sider>
                 </Layout>
             </Layout>
         </div>
@@ -37,10 +188,101 @@
 
 <script>
     export default {
-        //name: "app",
         data() {
             return {
-
+                isCollapsed: false,
+                buttonSize: 'large',
+                stateList: [
+                    {
+                        value: '伺服停止',
+                        label: '伺服停止'
+                    },
+                    {
+                        value: '伺服运行',
+                        label: '伺服运行'
+                    }
+                ],
+                modeList: [
+                    {
+                        value: '示教模式',
+                        label: '示教模式'
+                    },
+                    {
+                        value: '其他模式',
+                        label: '其他模式'
+                    }
+                ],
+                model2: '',
+                model3: '',
+                model4: '',
+                columns1: [
+                    {
+                        title: '序号',
+                        key: 'age'
+                    },
+                    {
+                        title: '程序名称',
+                        key: 'name'
+                    },
+                    {
+                        title: '修改时间',
+                        key: 'date'
+                    },
+                    {
+                        title: '程序备注',
+                        key: 'address'
+                    }
+                ],
+                data2: [
+                    {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    },
+                    {
+                        name: 'Jim Green',
+                        age: 24,
+                        address: 'London No. 1 Lake Park',
+                        date: '2016-10-01'
+                    },
+                    {
+                        name: 'Joe Black',
+                        age: 30,
+                        address: 'Sydney No. 1 Lake Park',
+                        date: '2016-10-02'
+                    },
+                    {
+                        name: 'Jon Snow',
+                        age: 26,
+                        address: 'Ottawa No. 2 Lake Park',
+                        date: '2016-10-04'
+                    },
+                    {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    },
+                    {
+                        name: 'Jim Green',
+                        age: 24,
+                        address: 'London No. 1 Lake Park',
+                        date: '2016-10-01'
+                    },
+                    {
+                        name: 'Joe Black',
+                        age: 30,
+                        address: 'Sydney No. 1 Lake Park',
+                        date: '2016-10-02'
+                    },
+                    {
+                        name: 'Jon Snow',
+                        age: 26,
+                        address: 'Ottawa No. 2 Lake Park',
+                        date: '2016-10-04'
+                    }
+                ]
             }
         },
         methods: {
@@ -152,7 +394,7 @@
             resize: function(oParent, handle, isLeft, isTop, lockX, lockY) {
                 handle.onmousedown = function (event) {
                     var event = event || window.event;
-                    var cnt = document.getElementById("test");
+                    var oCnt = document.getElementById("test");
                     var disX = event.clientX - handle.offsetLeft;
                     var disY = event.clientY - handle.offsetTop;
                     var iParentTop = oParent.offsetTop;
@@ -183,7 +425,7 @@
 
                         iH > maxH && (iH = maxH);
 
-                        lockY || (cnt.style.height = oParent.style.height = iH + "px");
+                        lockY || ( oCnt.style.height = oParent.style.height = iH + "px");
 
                         if ((isLeft && iW == 500) || (isTop && iH == 300)) document.onmousemove = null;
                         return false;
@@ -196,19 +438,32 @@
                 }
             },
         },
+        computed: {
+            menuitemClasses: function() {
+                return [
+                    'menu-item',
+                    this.isCollapsed ? 'collapsed-menu': ''
+                ]
+            }
+        },
         mounted() {
             let that = this;
-            var oDrag = document.getElementById("drag");
-            var oTitle = that.byClass("title", oDrag)[0];
-            var oL = that.byClass("resizeL", oDrag)[0];
-            var oT = that.byClass("resizeT", oDrag)[0];
-            var oR = that.byClass("resizeR", oDrag)[0];
-            var oB = that.byClass("resizeB", oDrag)[0];
-            var oLT = that.byClass("resizeLT", oDrag)[0];
-            var oTR = that.byClass("resizeTR", oDrag)[0];
-            var oBR = that.byClass("resizeBR", oDrag)[0];
-            var oLB = that.byClass("resizeLB", oDrag)[0];
+            let oDrag = document.getElementById("drag");
+            let oCnt = document.getElementById("test");
+            let oTitle = that.byClass("title", oDrag)[0];
+            let oRevert = this.byClass("revert", oDrag)[0];
+            let oMax = this.byClass("max", oDrag)[0];
+            let oL = that.byClass("resizeL", oDrag)[0];
+            let oT = that.byClass("resizeT", oDrag)[0];
+            let oR = that.byClass("resizeR", oDrag)[0];
+            let oB = that.byClass("resizeB", oDrag)[0];
+            let oLT = that.byClass("resizeLT", oDrag)[0];
+            let oTR = that.byClass("resizeTR", oDrag)[0];
+            let oBR = that.byClass("resizeBR", oDrag)[0];
+            let oLB = that.byClass("resizeLB", oDrag)[0];
+
             that.drag(oDrag, oTitle);
+
             //四角
             that.resize(oDrag, oLT, true, true, false, false);
             that.resize(oDrag, oTR, false, true, false, false);
@@ -222,6 +477,29 @@
 
             oDrag.style.left = (document.documentElement.clientWidth - oDrag.offsetWidth) / 2 + "px";
             oDrag.style.top = (document.documentElement.clientHeight - oDrag.offsetHeight) / 2 + "px";
+
+            //默认打开最大化
+            oDrag.style.top = 0;
+            oDrag.style.left = 0;
+
+            oDrag.style.width = document.documentElement.clientWidth - 2 + "px";
+            oDrag.style.height = document.documentElement.clientHeight - 2 + "px";
+            oCnt.style.height = document.documentElement.clientHeight - 2 + "px";
+
+            oMax.style.display = "none";
+            oRevert.style.display = "block";
+
+            //绑定还原按钮点击事件
+            oRevert.onclick = function () {
+                oDrag.style.width = 500 + "px";
+                oDrag.style.height = 300 + "px";
+                oCnt.style.height = 300 + "px";
+
+                oDrag.style.left = (document.documentElement.clientWidth - oDrag.offsetWidth) / 2 + "px";
+                oDrag.style.top = (document.documentElement.clientHeight - oDrag.offsetHeight) / 2 + "px";
+                oRevert.style.display = "none";
+                oMax.style.display = "block";
+            };
         }
     }
 </script>
@@ -241,8 +519,16 @@
 
     .drag .title {
         position: relative;
-        height: 27px;
-        margin: 5px;
+        height: 5px;
+        margin: 2px;
+    }
+
+    .drag .win-opt {
+        display: block;
+        position: relative;
+        left: -15px;
+        top: 12px;
+        float: right;
     }
 
     .drag .title h2 {
@@ -255,11 +541,11 @@
     .drag .title div {
         position: absolute;
         height: 19px;
-        top: 2px;
-        right: 0;
+        top: 16px;
+        right: 24px;
     }
 
-    .drag .title a,
+    .drag .win-opt a,
     a.open {
         float: left;
         width: 21px;
@@ -280,36 +566,36 @@
         background-position: 0 -29px;
     }
 
-    .drag .title a.min {
+    .drag .win-opt a.min {
         background-position: -29px 0;
     }
 
-    .drag .title a.min:hover {
+    .drag .win-opt a.min:hover {
         background-position: -29px -29px;
     }
 
-    .drag .title a.max {
+    .drag .win-opt a.max {
         background-position: -60px 0;
     }
 
-    .drag .title a.max:hover {
+    .drag .win-opt a.max:hover {
         background-position: -60px -29px;
     }
 
-    .drag .title a.revert {
+    .drag .win-opt a.revert {
         background-position: -149px 0;
         display: none;
     }
 
-    .drag .title a.revert:hover {
+    .drag .win-opt a.revert:hover {
         background-position: -149px -29px;
     }
 
-    .drag .title a.close {
+    .drag .win-opt a.close {
         background-position: -89px 0;
     }
 
-    .drag .title a.close:hover {
+    .drag .win-opt a.close:hover {
         background-position: -89px -29px;
     }
 
@@ -411,8 +697,8 @@
         border-radius: 3px;
         float: left;
         position: relative;
-        top: 15px;
-        left: 20px;
+        top: 16px;
+        left: 34px;
     }
     .layout-nav{
         width: 420px;
@@ -422,5 +708,41 @@
 
     .ivu-layout-header {
         padding: 0px;
+    }
+    .layout-con{
+        height: 100%;
+        width: 100%;
+    }
+    .menu-item span{
+        display: inline-block;
+        overflow: hidden;
+        width: 69px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        vertical-align: bottom;
+        transition: width .2s ease .2s;
+    }
+    .menu-item i{
+        transform: translateX(0px);
+        transition: font-size .2s ease, transform .2s ease;
+        vertical-align: middle;
+        font-size: 16px;
+    }
+    .collapsed-menu span{
+        width: 0px;
+        transition: width .2s ease;
+    }
+    .collapsed-menu i{
+        transform: translateX(5px);
+        transition: font-size .2s ease .2s, transform .2s ease .2s;
+        vertical-align: middle;
+        font-size: 22px;
+    }
+    .ivu-divider-horizontal {
+        margin: 0;
+    }
+
+    .ivu-select {
+        margin: 10px;
     }
 </style>
