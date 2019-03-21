@@ -28,39 +28,81 @@
                         </Col>
                         <!--模式和状态-->
                         <Col span="4">
-                            <Col span="12">
-                                <Select v-model="model2" style="width:100px;">
+                            <Col span="12" style="top: -10px">
+                                <Select v-model="model2" style="width:100px; top: -10px">
                                     <Option v-for="item in modeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
-                                <div style="position: relative;top: -36px;left: 37px; height: 15px">模式</div>
+                                <div class="btn-tip">
+                                    <p>模式</p>
+                                </div>
                             </Col>
-                            <Col span="12">
+                            <Col span="12" style="top: -10px">
                                 <Select v-model="model3" style="width:100px">
                                     <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
-                                <div style="position: relative;top: -36px;left: 37px; height: 15px">伺服状态</div>
+                                <div class="btn-tip">
+                                    <p>伺服状态</p>
+                                </div>
                             </Col>
                         </Col>
                         <!--操作-->
-                        <Col span="12">
-                            <Select v-model="model4" style="width:100px">
-                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                            </Select>
-                            <Select v-model="model5" style="width:100px">
-                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                            </Select>
-                            <Select v-model="model6" style="width:100px">
-                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                            </Select>
-                            <Select v-model="model7" style="width:100px">
-                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                            </Select>
-                            <Select v-model="model8" style="width:100px">
-                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                            </Select>
-                            <Select v-model="model9" style="width:100px">
-                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                            </Select>
+                        <Col span="12" style="top: -10px">
+                            <Col span="4">
+                                <Select v-model="model4" style="width:100px">
+                                    <Option v-for="item in codeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                </Select>
+                                <div class="btn-tip">
+                                    <p>程序</p>
+                                </div>
+                            </Col>
+                            <Col span="4">
+                                <!--<Select v-model="model5" style="width:100px">-->
+                                    <!--<Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>-->
+                                <!--</Select>-->
+                                <InputNumber
+                                        :max="100"
+                                        v-model="value10"
+                                        :formatter="value => `${value}%`"
+                                        :parser="value => value.replace('%', '')"
+                                        :step="5">
+                                </InputNumber>
+                                <div class="btn-tip">
+                                    <p>速度</p>
+                                </div>
+                            </Col>
+                            <Col span="4">
+                                <Select v-model="model6" style="width:100px">
+                                    <Option v-for="item in robotList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                </Select>
+                                <div class="btn-tip">
+                                    <p>机器人</p>
+                                </div>
+                            </Col>
+                            <Col span="4">
+                                <Select v-model="model7" style="width:100px">
+                                    <Option v-for="item in toolList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                </Select>
+                                <div class="btn-tip">
+                                    <p>工具</p>
+                                </div>
+                            </Col>
+
+                            <Col span="4">
+                                <Select v-model="model8" style="width:100px">
+                                    <Option v-for="item in techList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                </Select>
+                                <div class="btn-tip">
+                                    <p>工艺</p>
+                                </div>
+                            </Col>
+                            <Col span="4">
+                                <Select v-model="model9" style="width:100px">
+                                    <Option v-for="item in cordList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                </Select>
+                                <div class="btn-tip">
+                                    <p>坐标系</p>
+                                </div>
+                            </Col>
                         </Col>
                         <!--窗口操作-->
                         <Col span="4">
@@ -121,7 +163,7 @@
                             <Col span="24" style="height: 150px; display: flex;justify-content:center;align-items:Center;">
                                 <div style="display: flex;justify-content:center;align-items:Center;">
                                     <Button :size="buttonSize" type="primary" style="margin-right: 45px; height: 75px; width: 75px; border-radius: 50%; background: #fff; color: #00bfff; border: 1px solid #2d8cf0">START</Button>
-                                    <Button :size="buttonSize" type="primary" style="height: 75px; width: 75px; border-radius: 50%;background: #fff; color: #ff4500; border: 1px solid #ff4500"">STOP</Button>
+                                    <Button :size="buttonSize" type="primary" style="height: 75px; width: 75px; border-radius: 50%;background: #fff; color: #ff4500; border: 1px solid #ff4500">STOP</Button>
                                 </div>
                             </Col>
                         </Row>
@@ -185,6 +227,7 @@
             return {
                 isCollapsed: false,
                 buttonSize: 'large',
+                value10: 50,
                 stateList: [
                     {
                         value: '伺服停止',
@@ -205,14 +248,64 @@
                         label: '其他模式'
                     }
                 ],
+                codeList: [
+                    {
+                        value: '停止',
+                        label: '停止'
+                    },
+                    {
+                        value: '运行',
+                        label: '运行'
+                    }
+                ],
+                robotList: [
+                    {
+                        value: 'Robot1',
+                        label: 'Robot1'
+                    },
+                    {
+                        value: 'Robot2',
+                        label: 'Robot2'
+                    }
+                ],
+                toolList: [
+                    {
+                        value: '无工具',
+                        label: '无工具'
+                    },
+                    {
+                        value: '工具1',
+                        label: '工具1'
+                    }
+                ],
+                techList: [
+                    {
+                        value: '工艺1',
+                        label: '工艺1'
+                    },
+                    {
+                        value: '工艺2',
+                        label: '工艺2'
+                    }
+                ],
+                cordList: [
+                    {
+                        value: '坐标系1',
+                        label: '坐标系1'
+                    },
+                    {
+                        value: '坐标系2',
+                        label: '坐标系2'
+                    }
+                ],
                 model2: '示教模式',
                 model3: '伺服停止',
-                model4: '',
-                model5: '',
-                model6: '',
-                model7: '',
-                model8: '',
-                model9: ''
+                model4: '停止',
+                model5: '56%',
+                model6: 'Robot1',
+                model7: '无工具',
+                model8: '工艺1',
+                model9: '坐标系1'
             }
         },
         methods: {
@@ -670,7 +763,7 @@
     }
 
     .ivu-select {
-        margin: 10px;
+        margin-left: 15px;
     }
 
     .font_div{
@@ -693,5 +786,16 @@
 
     .btn-mid span {
         margin-right: 15px;
+    }
+
+    .btn-tip {
+        position: relative;
+        left: 40px;
+        width: 50px;
+        clear: both;
+    }
+    .btn-tip p {
+        height: 0px;
+        margin-top: -35px;
     }
 </style>
