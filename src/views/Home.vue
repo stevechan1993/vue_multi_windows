@@ -210,17 +210,6 @@
 			onSubmit() {
 				console.log('submit!');
 			},
-			// handleopen() {
-			// 	console.log('handleopen');
-			// },
-			// handleclose() {
-			// 	console.log('handleclose');
-			// },
-			// handleselect: function (a, b) {
-			// },
-			// handleSelect1(key, keyPath) {
-			// 	console.log(key, keyPath);
-			// },
 			handleIconClick(ev) {
 				console.log(ev);
 			},
@@ -240,9 +229,6 @@
 			collapse:function(){
 				this.collapsed=!this.collapsed;
 			},
-			// showMenu(i,status){
-			// 	this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-'+i)[0].style.display=status?'block':'none';
-			// }
 		},
 		mounted() {
 			let that = this;

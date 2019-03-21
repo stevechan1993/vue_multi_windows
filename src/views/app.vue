@@ -48,7 +48,7 @@
                         <!--操作-->
                         <Col span="12" style="top: -10px">
                             <Col span="4">
-                                <Select v-model="model4" style="width:100px">
+                                <Select v-model="model4" style="width:85px">
                                     <Option v-for="item in codeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
                                 <div class="btn-tip">
@@ -56,9 +56,6 @@
                                 </div>
                             </Col>
                             <Col span="4">
-                                <!--<Select v-model="model5" style="width:100px">-->
-                                    <!--<Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>-->
-                                <!--</Select>-->
                                 <InputNumber
                                         :max="100"
                                         v-model="value10"
@@ -71,7 +68,7 @@
                                 </div>
                             </Col>
                             <Col span="4">
-                                <Select v-model="model6" style="width:100px">
+                                <Select v-model="model6" style="width:85px">
                                     <Option v-for="item in robotList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
                                 <div class="btn-tip">
@@ -79,16 +76,15 @@
                                 </div>
                             </Col>
                             <Col span="4">
-                                <Select v-model="model7" style="width:100px">
+                                <Select v-model="model7" style="width:85px">
                                     <Option v-for="item in toolList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
                                 <div class="btn-tip">
                                     <p>工具</p>
                                 </div>
                             </Col>
-
                             <Col span="4">
-                                <Select v-model="model8" style="width:100px">
+                                <Select v-model="model8" style="width:85px">
                                     <Option v-for="item in techList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
                                 <div class="btn-tip">
@@ -96,7 +92,7 @@
                                 </div>
                             </Col>
                             <Col span="4">
-                                <Select v-model="model9" style="width:100px">
+                                <Select v-model="model9" style="width:85px">
                                     <Option v-for="item in cordList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
                                 <div class="btn-tip">
@@ -372,12 +368,10 @@
                 };
                 //还原按钮
                 oRevert.onclick = function () {
-                    // oDrag.style.width = this.dragMinWidth + "px";
-                    // oDrag.style.height = this.dragMinHeight + "px";
-                    oDrag.style.width = 500 + "px";
-                    oDrag.style.height = 300 + "px";
+                    oDrag.style.width = 1200 + "px";
+                    oDrag.style.height = 720 + "px";
 
-                    document.getElementById("test").style.height = 300 + "px";
+                    document.getElementById("test").style.height = 720 + "px";
 
                     oDrag.style.left = (document.documentElement.clientWidth - oDrag.offsetWidth) / 2 + "px";
                     oDrag.style.top = (document.documentElement.clientHeight - oDrag.offsetHeight) / 2 + "px";
@@ -438,19 +432,19 @@
                         isLeft && (oParent.style.left = iParentLeft + iL + "px");
                         isTop && (oParent.style.top = iParentTop + iT + "px");
 
-                        iW < 500 && (iW = 500);
+                        iW < 1200 && (iW = 1200);
 
                         iW > maxW && (iW = maxW);
 
                         lockX || (oParent.style.width = iW + "px");
 
-                        iH < 300 && (iH = 300);
+                        iH < 720 && (iH = 720);
 
                         iH > maxH && (iH = maxH);
 
                         lockY || ( oCnt.style.height = oParent.style.height = iH + "px");
 
-                        if ((isLeft && iW == 500) || (isTop && iH == 300)) document.onmousemove = null;
+                        if ((isLeft && iW == 1200) || (isTop && iH == 1200)) document.onmousemove = null;
                         return false;
                     };
                     document.onmouseup = function () {
@@ -514,9 +508,9 @@
 
             //绑定还原按钮点击事件
             oRevert.onclick = function () {
-                oDrag.style.width = 500 + "px";
-                oDrag.style.height = 300 + "px";
-                oCnt.style.height = 300 + "px";
+                oDrag.style.width = 1200 + "px";
+                oDrag.style.height = 720 + "px";
+                oCnt.style.height = 720 + "px";
 
                 oDrag.style.left = (document.documentElement.clientWidth - oDrag.offsetWidth) / 2 + "px";
                 oDrag.style.top = (document.documentElement.clientHeight - oDrag.offsetHeight) / 2 + "px";
