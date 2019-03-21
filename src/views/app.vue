@@ -28,31 +28,37 @@
                         </Col>
                         <!--模式和状态-->
                         <Col span="4">
-                            <Select v-model="model3" style="width:100px">
-                                <Option v-for="item in modeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                            </Select>
-                            <Select v-model="model3" style="width:100px">
-                                <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                            </Select>
+                            <Col span="12">
+                                <Select v-model="model2" style="width:100px;">
+                                    <Option v-for="item in modeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                </Select>
+                                <div style="position: relative;top: -36px;left: 37px; height: 15px">模式</div>
+                            </Col>
+                            <Col span="12">
+                                <Select v-model="model3" style="width:100px">
+                                    <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                </Select>
+                                <div style="position: relative;top: -36px;left: 37px; height: 15px">伺服状态</div>
+                            </Col>
                         </Col>
                         <!--操作-->
                         <Col span="12">
-                            <Select v-model="model3" style="width:100px">
+                            <Select v-model="model4" style="width:100px">
                                 <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                             </Select>
-                            <Select v-model="model3" style="width:100px">
+                            <Select v-model="model5" style="width:100px">
                                 <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                             </Select>
-                            <Select v-model="model3" style="width:100px">
+                            <Select v-model="model6" style="width:100px">
                                 <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                             </Select>
-                            <Select v-model="model3" style="width:100px">
+                            <Select v-model="model7" style="width:100px">
                                 <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                             </Select>
-                            <Select v-model="model3" style="width:100px">
+                            <Select v-model="model8" style="width:100px">
                                 <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                             </Select>
-                            <Select v-model="model3" style="width:100px">
+                            <Select v-model="model9" style="width:100px">
                                 <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                             </Select>
                         </Col>
@@ -71,7 +77,7 @@
                 </Header>
                 <Divider />
                 <Layout>
-                    <Sider hide-trigger :style="{background: '#fff', padding: '0 0 0 0'}">
+                    <Sider hide-trigger :style="{background: '#fff', padding: '0 0 0 0', 'border-right': '1px solid #e8eaec'}">
                         <Menu active-name="1-2" width="auto" :class="menuitemClasses">
                             <MenuItem name="1-1">
                                 <Icon type="ios-navigate"></Icon>
@@ -100,16 +106,16 @@
                         </Menu>
                     </Sider>
                     <Layout :style="{padding: '0 24px 24px'}">
-                        <Content id="test" :style="{padding: '0px', minHeight: '300px', height: '300px', background: '#fff'}">
+                        <Content id="test" :style="{padding: '0px', minHeight: '300px', height: '300px', background: '#fff', 'border-left': '1px solid #e8eaec', 'border-right': '1px solid #e8eaec'}">
                             <!--总览-->
                             <Row>
                                 <Col span="24" style="height: 64px">
                                     <Row>
                                         <Col span="12">
-                                            <div>工程预览</div>
+                                            <div class="font_div" style="float: left; position: relative; margin-left: 20px">工程预览</div>
                                         </Col>
                                         <Col span="12">
-                                            <div>共有3个程序</div>
+                                            <div class="font_div" style="float: right; position: relative; margin-right: 20px" >共有3个程序</div>
                                         </Col>
                                     </Row>
                                 </Col>
@@ -118,8 +124,10 @@
                             <!--操作-->
                             <Row>
                                 <Col span="24" style="height: 86px;">
-                                    <Button :size="buttonSize" type="primary" style="float: right; margin-left: 10px">打开</Button>
-                                    <Button :size="buttonSize" type="primary" style="float: right">新建</Button>
+                                    <div style="position: relative;top: 25px;right: 29px;">
+                                        <Button :size="buttonSize" type="primary" style="float: right; margin-left: 10px">打开</Button>
+                                        <Button :size="buttonSize" type="primary" style="float: right">新建</Button>
+                                    </div>
                                 </Col>
                                 <Divider />
                             </Row>
@@ -131,52 +139,66 @@
                             </Row>
                         </Content>
                     </Layout>
-                    <Sider hide-trigger :style="{background: '#fff'}">
+                    <Sider hide-trigger :style="{background: '#fff', 'min-width': '277px', 'border-left': '1px solid #e8eaec' }">
                         <Row>
                             <Col span="24" style="height: 60px">
-                                <div>启停控制</div>
+                                <div class="font_div">启停控制</div>
                             </Col>
-                            <Divider />
                         </Row>
+                        <Divider />
                         <Row>
-                            <Col span="24" style="height: 120px">
-                                <Button type="primary" shape="circle" icon="ios-search"></Button>
-                                <Button type="primary" shape="circle" icon="ios-search"></Button>
+                            <Col span="24" style="height: 150px; display: flex;justify-content:center;align-items:Center;">
+                                <div style="display: flex;justify-content:center;align-items:Center;">
+                                    <Button :size="buttonSize" type="primary" style="margin-right: 45px; height: 75px; width: 75px; border-radius: 50%; background: #fff; color: #00bfff; border: 1px solid #2d8cf0">START</Button>
+                                    <Button :size="buttonSize" type="primary" style="height: 75px; width: 75px; border-radius: 50%;background: #fff; color: #ff4500; border: 1px solid #ff4500"">STOP</Button>
+                                </div>
                             </Col>
-                            <Divider />
                         </Row>
+                        <Divider />
                         <Row>
                             <Col span="24" style="height: 60px;">
-                                <div>点动控制</div>
+                                <div class="font_div">点动控制</div>
                             </Col>
-                            <Divider />
                         </Row>
+                        <Divider />
                         <Row>
                             <Col span="24">
-                                S
-                                <Button>-</Button>
-                                <Button>+</Button>
                                 <br>
-                                L
-                                <Button>-</Button>
-                                <Button>+</Button>
+                                <Row class="btn-mid">
+                                    <span>S</span>
+                                    <Button icon="ios-remove" @click="" class="btn-small"></Button>
+                                    <Button icon="ios-add" @click="" class="btn-small"></Button>
+                                </Row>
                                 <br>
-                                U
-                                <Button>-</Button>
-                                <Button>+</Button>
+                                <Row class="btn-mid">
+                                    <span>L</span>
+                                    <Button icon="ios-remove" @click="" class="btn-small"></Button>
+                                    <Button icon="ios-add" @click="" class="btn-small"></Button>
+                                </Row>
                                 <br>
-                                R
-                                <Button>-</Button>
-                                <Button>+</Button>
+                                <Row class="btn-mid">
+                                    <span>U</span>
+                                    <Button icon="ios-remove" @click="" class="btn-small"></Button>
+                                    <Button icon="ios-add" @click="" class="btn-small"></Button>
+                                </Row>
                                 <br>
-                                B
-                                <Button>-</Button>
-                                <Button>+</Button>
+                                <Row class="btn-mid">
+                                    <span>R</span>
+                                    <Button icon="ios-remove" @click="" class="btn-small"></Button>
+                                    <Button icon="ios-add" @click="" class="btn-small"></Button>
+                                </Row>
                                 <br>
-                                T
-                                <Button>-</Button>
-                                <Button>+</Button>
+                                <Row class="btn-mid">
+                                    <span>B</span>
+                                    <Button icon="ios-remove" @click="" class="btn-small"></Button>
+                                    <Button icon="ios-add" @click="" class="btn-small"></Button>
+                                </Row>
                                 <br>
+                                <Row class="btn-mid">
+                                    <span>T</span>
+                                    <Button icon="ios-remove" @click="" class="btn-small"></Button>
+                                    <Button icon="ios-add" @click="" class="btn-small"></Button>
+                                </Row>
                             </Col>
                         </Row>
                     </Sider>
@@ -212,9 +234,14 @@
                         label: '其他模式'
                     }
                 ],
-                model2: '',
-                model3: '',
+                model2: '示教模式',
+                model3: '伺服停止',
                 model4: '',
+                model5: '',
+                model6: '',
+                model7: '',
+                model8: '',
+                model9: '',
                 columns1: [
                     {
                         title: '序号',
@@ -512,9 +539,6 @@
         width: 500px;
         height: 300px;
         background: #e9e9e9;
-        /*border: 1px solid #444;*/
-        /*border-radius: 2px;*/
-        /*box-shadow: 0 1px 3px 2px #666;*/
     }
 
     .drag .title {
@@ -744,5 +768,27 @@
 
     .ivu-select {
         margin: 10px;
+    }
+
+    .font_div{
+        text-align:center;
+        line-height: 60px;
+        color: deepskyblue;
+        font-size: 14px;
+    }
+    .btn-mid {
+        display: flex;
+        justify-content:center;
+        align-items:Center;
+    }
+
+    .btn-small {
+        width: 67px;
+        height: 23px;
+        margin: 10px 10px 10px;
+    }
+
+    .btn-mid span {
+        margin-right: 15px;
     }
 </style>

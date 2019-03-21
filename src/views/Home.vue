@@ -5,7 +5,7 @@
 			<!--应用列表-->
 			<el-col :span="6" style="height: 52px; width: 100px; background: #FF3825;">
 				<el-dropdown trigger="click" >
-				  	<span class="el-dropdown-link"><img src="../assets/logo_nav/card.png" style="margin: -10px 31px"/></span>
+				  	<span class="el-dropdown-link"><img src="../assets/icon_menu_default.png" style="margin: -4px 35px;"/></span>
 					<el-dropdown-menu slot="dropdown" style="width: 300px;height: 600px; background: #3e3e3e; opacity: 0.8; margin-left: -10px; margin-top: 0px;border: 0px">
 						<el-col :span="24" style="margin-top: 20px;">
 							<el-input
@@ -17,9 +17,6 @@
 						</el-col>
 						<el-col :span="24" style="margin-top: 50px;">
 							<span class="taskspan">
-								<!--<router-link :to="">-->
-									<!--<img src="../assets/logo_menu/logo_2.png" style="padding:15px;" />-->
-								<!--</router-link>-->
 								<a href="#/App"><img src="../assets/logo_menu/logo_2.png" style="padding:15px;" /></a>
 							</span>
 							<span class="taskspan">
