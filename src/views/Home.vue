@@ -143,74 +143,13 @@
 				</Drawer>
 			</el-col>
 		</el-col>
-
-		<!--全屏按钮-->
-		<!--<el-col :span="24" class="el-menu-demo" style="width: 30%; position: absolute;z-index: 999;right: 40px; top: 53px">-->
-			<!--<el-button style="width: 80px; float: right; margin-top: 13px; margin-right: -20px; background: #20a0ff; color: #ffffff" @click="buttoncli">全屏</el-button>-->
-		<!--</el-col>-->
-
-		<!--应用呈现区域-->
-		<!--<el-col :span="24" class="application">-->
-		<!--导航栏-->
-		<!--<el-col :span="24" class="subheader">-->
-			<!--&lt;!&ndash;应用图标&ndash;&gt;-->
-			<!--<el-col :span="12" class="el-menu-demo">-->
-				<!--<span><img src="../assets/logo_nav/log0_14.png" style="margin-top: 18px; margin-left: 20px;"/></span>-->
-			<!--</el-col>-->
-			<!--&lt;!&ndash;二级导航&ndash;&gt;-->
-			<!--<el-col :span="12" class="nav-midle">-->
-				<!--<el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect1">-->
-					<!--<el-menu-item index="1">Overview</el-menu-item>-->
-					<!--<el-menu-item index="1">Campaign</el-menu-item>-->
-					<!--<el-menu-item index="3">Analytics</el-menu-item>-->
-				<!--</el-menu>-->
-			<!--</el-col>-->
-		<!--</el-col>-->
 		<!--侧边导航栏-->
 		<el-col :span="24" class="main">
-			<!--<aside :class="collapsed?'menu-collapsed':'menu-expanded'">-->
-				<!--<el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect"-->
-						 <!--unique-opened router v-show="!collapsed">-->
-					<!--<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">-->
-						<!--<el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path" style="padding-left: 32px"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>-->
-					<!--</template>-->
-				<!--</el-menu>-->
-			<!--</aside>-->
 			<!--应用内容-->
 			<section class="content-container">
-				<!--<div id="drag" class="drag" style="z-index: 1">-->
-					<!--<div class="title">-->
-						<!--<h2>可拖动窗口1</h2>-->
-						<!--<div>-->
-							<!--<a class="min" href="javascript:" title="最小化"></a>-->
-							<!--<a class="max" href="javascript:" title="最大化"></a>-->
-							<!--<a class="revert" href="javascript:" title="还原"></a>-->
-							<!--<a class="close" href="javascript:" title="关闭"></a>-->
-						<!--</div>-->
-					<!--</div>-->
-					<!--<div class="resizeL"></div>-->
-					<!--<div class="resizeT"></div>-->
-					<!--<div class="resizeR"></div>-->
-					<!--<div class="resizeB"></div>-->
-					<!--<div class="resizeLT"></div>-->
-					<!--<div class="resizeTR"></div>-->
-					<!--<div class="resizeBR"></div>-->
-					<!--<div class="resizeLB"></div>-->
-					<!--<div class="content">-->
-						<!--<div id="canvasContentDiv" class="grid-content bg-purple-light">-->
-							<!--<el-col :span="24" class="content-wrapper" style="background: #EEF1F6">-->
-								<!--<transition name="fade" mode="out-in">-->
-									<!--<router-view></router-view>-->
-								<!--</transition>-->
-							<!--</el-col>-->
-						<!--</div>-->
-					<!--</div>-->
-				<!--</div>-->
 				<router-view></router-view>
-				<router-view name="1"></router-view>
 			</section>
 		</el-col>
-		<!--</el-col>-->
 	</el-row>
 </template>
 
