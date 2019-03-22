@@ -29,7 +29,7 @@
                         <!--模式和状态-->
                         <Col span="4">
                             <Col span="12" style="top: -10px">
-                                <Select v-model="model2" style="width:100px; top: -10px">
+                                <Select v-model="mode" style="width:100px; top: -10px">
                                     <Option v-for="item in modeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
                                 <div class="btn-tip">
@@ -37,7 +37,7 @@
                                 </div>
                             </Col>
                             <Col span="12" style="top: -10px">
-                                <Select v-model="model3" style="width:100px">
+                                <Select v-model="state" style="width:100px">
                                     <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
                                 <div class="btn-tip">
@@ -48,7 +48,7 @@
                         <!--操作-->
                         <Col span="12" style="top: -10px">
                             <Col span="4">
-                                <Select v-model="model4" style="width:85px">
+                                <Select v-model="code" style="width:85px">
                                     <Option v-for="item in codeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
                                 <div class="btn-tip">
@@ -58,17 +58,17 @@
                             <Col span="4">
                                 <InputNumber
                                         :max="100"
-                                        v-model="value10"
+                                        v-model="speed"
                                         :formatter="value => `${value}%`"
                                         :parser="value => value.replace('%', '')"
                                         :step="5">
                                 </InputNumber>
-                                <div class="btn-tip">
+                                <div class="btn-tip" style="margin-left: -12px">
                                     <p>速度</p>
                                 </div>
                             </Col>
                             <Col span="4">
-                                <Select v-model="model6" style="width:85px">
+                                <Select v-model="robot" style="width:85px">
                                     <Option v-for="item in robotList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
                                 <div class="btn-tip">
@@ -76,7 +76,7 @@
                                 </div>
                             </Col>
                             <Col span="4">
-                                <Select v-model="model7" style="width:85px">
+                                <Select v-model="tool" style="width:85px">
                                     <Option v-for="item in toolList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
                                 <div class="btn-tip">
@@ -84,7 +84,7 @@
                                 </div>
                             </Col>
                             <Col span="4">
-                                <Select v-model="model8" style="width:85px">
+                                <Select v-model="tech" style="width:85px">
                                     <Option v-for="item in techList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
                                 <div class="btn-tip">
@@ -92,7 +92,7 @@
                                 </div>
                             </Col>
                             <Col span="4">
-                                <Select v-model="model9" style="width:85px">
+                                <Select v-model="cord" style="width:85px">
                                     <Option v-for="item in cordList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
                                 <div class="btn-tip">
@@ -143,8 +143,8 @@
                             </MenuItem>
                         </Menu>
                     </Sider>
-                    <Layout :style="{padding: '0 24px 24px'}">
-                        <Content id="test" :style="{padding: '0px', minHeight: '300px', height: '300px', background: '#fff', 'border-left': '1px solid #e8eaec', 'border-right': '1px solid #e8eaec'}">
+                    <Layout :style="{'padding-left': '24px', 'padding-right': '24px'}">
+                        <Content id="test" :style="{padding: '0px', background: '#fff', 'border-left': '1px solid #e8eaec', 'border-right': '1px solid #e8eaec'}">
                             <router-view></router-view>
                         </Content>
                     </Layout>
@@ -158,8 +158,8 @@
                         <Row>
                             <Col span="24" style="height: 150px; display: flex;justify-content:center;align-items:Center;">
                                 <div style="display: flex;justify-content:center;align-items:Center;">
-                                    <Button :size="buttonSize" type="primary" style="margin-right: 45px; height: 75px; width: 75px; border-radius: 50%; background: #fff; color: #00bfff; border: 1px solid #2d8cf0">START</Button>
-                                    <Button :size="buttonSize" type="primary" style="height: 75px; width: 75px; border-radius: 50%;background: #fff; color: #ff4500; border: 1px solid #ff4500">STOP</Button>
+                                    <Button :size="buttonSize" type="primary" @click.native.prevent="startAxis" style="margin-right: 45px; height: 75px; width: 75px; border-radius: 50%; background: #fff; color: #00bfff; border: 1px solid #2d8cf0">START</Button>
+                                    <Button :size="buttonSize" type="primary" @click="stopAxis" style="height: 75px; width: 75px; border-radius: 50%;background: #fff; color: #ff4500; border: 1px solid #ff4500">STOP</Button>
                                 </div>
                             </Col>
                         </Row>
@@ -175,38 +175,38 @@
                                 <br>
                                 <Row class="btn-mid">
                                     <span>S</span>
-                                    <Button icon="ios-remove" @click="" class="btn-small"></Button>
-                                    <Button icon="ios-add" @click="" class="btn-small"></Button>
+                                    <Button icon="ios-remove" @click="sMinus" class="btn-small"></Button>
+                                    <Button icon="ios-add" @click="sPlus" class="btn-small"></Button>
                                 </Row>
                                 <br>
                                 <Row class="btn-mid">
                                     <span>L</span>
-                                    <Button icon="ios-remove" @click="" class="btn-small"></Button>
-                                    <Button icon="ios-add" @click="" class="btn-small"></Button>
+                                    <Button icon="ios-remove" @click="lMinus" class="btn-small"></Button>
+                                    <Button icon="ios-add" @click="lPlus" class="btn-small"></Button>
                                 </Row>
                                 <br>
                                 <Row class="btn-mid">
                                     <span>U</span>
-                                    <Button icon="ios-remove" @click="" class="btn-small"></Button>
-                                    <Button icon="ios-add" @click="" class="btn-small"></Button>
+                                    <Button icon="ios-remove" @click="uMinus" class="btn-small"></Button>
+                                    <Button icon="ios-add" @click="uPlus" class="btn-small"></Button>
                                 </Row>
                                 <br>
                                 <Row class="btn-mid">
                                     <span>R</span>
-                                    <Button icon="ios-remove" @click="" class="btn-small"></Button>
-                                    <Button icon="ios-add" @click="" class="btn-small"></Button>
+                                    <Button icon="ios-remove" @click="rMinus" class="btn-small"></Button>
+                                    <Button icon="ios-add" @click="rPlus" class="btn-small"></Button>
                                 </Row>
                                 <br>
                                 <Row class="btn-mid">
                                     <span>B</span>
-                                    <Button icon="ios-remove" @click="" class="btn-small"></Button>
-                                    <Button icon="ios-add" @click="" class="btn-small"></Button>
+                                    <Button icon="ios-remove" @click="bMinus" class="btn-small"></Button>
+                                    <Button icon="ios-add" @click="bPlus" class="btn-small"></Button>
                                 </Row>
                                 <br>
                                 <Row class="btn-mid">
                                     <span>T</span>
-                                    <Button icon="ios-remove" @click="" class="btn-small"></Button>
-                                    <Button icon="ios-add" @click="" class="btn-small"></Button>
+                                    <Button icon="ios-remove" @click="tMinus" class="btn-small"></Button>
+                                    <Button icon="ios-add" @click="tPlus" class="btn-small"></Button>
                                 </Row>
                             </Col>
                         </Row>
@@ -223,91 +223,188 @@
             return {
                 isCollapsed: false,
                 buttonSize: 'large',
-                value10: 50,
+                sAxis: 0,
+                lAxis: 0,
+                uAxis: 0,
+                rAxis: 0,
+                bAxis: 0,
+                tAxis: 0,
                 stateList: [
                     {
-                        value: '伺服停止',
+                        value: '0',
                         label: '伺服停止'
                     },
                     {
-                        value: '伺服运行',
+                        value: '1',
                         label: '伺服运行'
                     }
                 ],
                 modeList: [
                     {
-                        value: '示教模式',
+                        value: '0',
                         label: '示教模式'
                     },
                     {
-                        value: '其他模式',
-                        label: '其他模式'
+                        value: '1',
+                        label: '运行模式'
                     }
                 ],
                 codeList: [
                     {
-                        value: '停止',
+                        value: '0',
                         label: '停止'
                     },
                     {
-                        value: '运行',
+                        value: '1',
                         label: '运行'
                     }
                 ],
                 robotList: [
                     {
-                        value: 'Robot1',
+                        value: '1',
                         label: 'Robot1'
                     },
                     {
-                        value: 'Robot2',
+                        value: '2',
                         label: 'Robot2'
                     }
                 ],
                 toolList: [
                     {
-                        value: '无工具',
+                        value: '0',
                         label: '无工具'
                     },
                     {
-                        value: '工具1',
+                        value: '1',
                         label: '工具1'
                     }
                 ],
                 techList: [
                     {
-                        value: '工艺1',
+                        value: '1',
                         label: '工艺1'
                     },
                     {
-                        value: '工艺2',
+                        value: '2',
                         label: '工艺2'
                     }
                 ],
                 cordList: [
                     {
-                        value: '坐标系1',
+                        value: '1',
                         label: '坐标系1'
                     },
                     {
-                        value: '坐标系2',
+                        value: '2',
                         label: '坐标系2'
                     }
                 ],
-                model2: '示教模式',
-                model3: '伺服停止',
-                model4: '停止',
-                model5: '56%',
-                model6: 'Robot1',
-                model7: '无工具',
-                model8: '工艺1',
-                model9: '坐标系1'
+                mode: '0',
+                state: '0',
+                code: '0',
+                speed: 50,
+                robot: '1',
+                tool: '1',
+                tech: '1',
+                cord: '1'
+            }
+        },
+        watch: {
+            mode(val, oldVal) {
+                console.log(val);
+                let params = {
+                    mode: val
+                };
+                this.$http.post('/api/handle/mode', params)
+                    .then((response) => {
+                        let res = response.data;
+                        console.log(res);
+                        alert(res.msg);
+                        console.log();
+                        //确认修改状态成功，修改当前select内容，否则设置为原内容
+                        if (res.code == 1) {
+                            this.mode = val;
+                        } else {
+                            this.mode = oldVal;
+                        }
+                    })
+                    .catch((reject) => {
+                        console.log(reject);
+                    });
+            },
+            code(val, oldVal) {
+                console.log(val);
+            },
+            state(val, oldVal) {
+                console.log(val);
+            },
+            speed(val, oldVal) {
+                console.log(val);
+            },
+            robot(val, oldVal) {
+                console.log(val);
+            },
+            tool(val, oldVal) {
+                console.log(val);
+            },
+            tech(val, oldVal) {
+                console.log(val);
+            },
+            cord(val, oldVal) {
+                console.log(val);
             }
         },
         methods: {
-            byId: function (id) {
-                return typeof id === "string" ? document.getElementById(id): id;
+            //S轴
+            sPlus: function() {
+                console.log(++this.sAxis);
             },
+            sMinus: function() {
+                console.log(--this.sAxis);
+            },
+            //L轴
+            lPlus: function() {
+                console.log(++this.lAxis);
+            },
+            lMinus: function() {
+                console.log(--this.lAxis);
+            },
+            //U轴
+            uPlus: function() {
+                console.log(++this.uAxis);
+            },
+            uMinus: function() {
+                console.log(--this.uAxis);
+            },
+            //R轴
+            rPlus: function() {
+                console.log(++this.rAxis);
+            },
+            rMinus: function() {
+                console.log(--this.rAxis);
+            },
+            //B轴
+            bPlus: function() {
+                console.log(++this.bAxis);
+            },
+            bMinus: function() {
+                console.log(--this.bAxis);
+            },
+            //T轴
+            tPlus: function() {
+                console.log(++this.tAxis);
+            },
+            tMinus: function() {
+                console.log(--this.tAxis);
+            },
+            //启停控制
+            startAxis: function() {
+                console.log("START");
+            },
+            stopAxis: function() {
+                console.log("STOP");
+            },
+            //窗口拖动与缩放
             byTagName: function (elem, obj) {
                 return obj.getElementsByTagName(elem) || document.getElementsByTagName(elem);
             },
@@ -464,33 +561,33 @@
             }
         },
         mounted() {
-            let that = this;
             let oDrag = document.getElementById("drag");
             let oCnt = document.getElementById("test");
-            let oTitle = that.byClass("title", oDrag)[0];
+            let oTitle = this.byClass("title", oDrag)[0];
             let oRevert = this.byClass("revert", oDrag)[0];
             let oMax = this.byClass("max", oDrag)[0];
-            let oL = that.byClass("resizeL", oDrag)[0];
-            let oT = that.byClass("resizeT", oDrag)[0];
-            let oR = that.byClass("resizeR", oDrag)[0];
-            let oB = that.byClass("resizeB", oDrag)[0];
-            let oLT = that.byClass("resizeLT", oDrag)[0];
-            let oTR = that.byClass("resizeTR", oDrag)[0];
-            let oBR = that.byClass("resizeBR", oDrag)[0];
-            let oLB = that.byClass("resizeLB", oDrag)[0];
+            let oL = this.byClass("resizeL", oDrag)[0];
+            let oT = this.byClass("resizeT", oDrag)[0];
+            let oR = this.byClass("resizeR", oDrag)[0];
+            let oB = this.byClass("resizeB", oDrag)[0];
+            let oLT = this.byClass("resizeLT", oDrag)[0];
+            let oTR = this.byClass("resizeTR", oDrag)[0];
+            let oBR = this.byClass("resizeBR", oDrag)[0];
+            let oLB = this.byClass("resizeLB", oDrag)[0];
 
-            that.drag(oDrag, oTitle);
+            this.drag(oDrag, oTitle);
 
             //四角
-            that.resize(oDrag, oLT, true, true, false, false);
-            that.resize(oDrag, oTR, false, true, false, false);
-            that.resize(oDrag, oBR, false, false, false, false);
-            that.resize(oDrag, oLB, true, false, false, false);
+            this.resize(oDrag, oLT, true, true, false, false);
+            this.resize(oDrag, oTR, false, true, false, false);
+            this.resize(oDrag, oBR, false, false, false, false);
+            this.resize(oDrag, oLB, true, false, false, false);
+
             //四边
-            that.resize(oDrag, oL, true, false, false, true);
-            that.resize(oDrag, oT, false, true, true, false);
-            that.resize(oDrag, oR, false, false, false, true);
-            that.resize(oDrag, oB, false, false, true, false);
+            this.resize(oDrag, oL, true, false, false, true);
+            this.resize(oDrag, oT, false, true, true, false);
+            this.resize(oDrag, oR, false, false, false, true);
+            this.resize(oDrag, oB, false, false, true, false);
 
             oDrag.style.left = (document.documentElement.clientWidth - oDrag.offsetWidth) / 2 + "px";
             oDrag.style.top = (document.documentElement.clientHeight - oDrag.offsetHeight) / 2 + "px";
@@ -788,6 +885,7 @@
         width: 50px;
         clear: both;
     }
+
     .btn-tip p {
         height: 0px;
         margin-top: -35px;

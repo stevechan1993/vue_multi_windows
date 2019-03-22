@@ -2,21 +2,19 @@ import babelpolyfill from 'babel-polyfill'
 import Vue from 'vue'
 import App from './App'
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
-//import './assets/theme/theme-green/index.css'
-import 'iview/dist/styles/iview.css'
 import VueRouter from 'vue-router'
 import store from './vuex/store'
 import Vuex from 'vuex'
-//import NProgress from 'nprogress'
-//import 'nprogress/nprogress.css'
 import routes from './routes'
 import Mock from './mock'
 import iView from 'iview'
-import screenfull from 'screenfull'
+import axios from 'axios';
 
 Mock.bootstrap();
+
 import 'font-awesome/css/font-awesome.min.css'
+import 'element-ui/lib/theme-default/index.css'
+import 'iview/dist/styles/iview.css'
 
 //import icon
 import "./assets/icon/iconfont.css"
@@ -25,16 +23,15 @@ Vue.use(ElementUI);
 Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(iView);
-Vue.use(screenfull);
 
-//NProgress.configure({ showSpinner: false });
+Vue.config.productionTip = false;
+Vue.prototype.$http = axios;
 
 const router = new VueRouter({
   routes
 });
 
 router.beforeEach((to, from, next) => {
-  //NProgress.start();
   if (to.path == '/login') {
     sessionStorage.removeItem('user');
   }
@@ -45,12 +42,6 @@ router.beforeEach((to, from, next) => {
     next()
   }
 });
-
-//router.afterEach(transition => {
-//NProgress.done();
-//});
-
-// Vue.component(CollapseTransition.name, CollapseTransition);
 
 new Vue({
   //el: '#app',
