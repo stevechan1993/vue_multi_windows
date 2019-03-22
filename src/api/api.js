@@ -2,7 +2,29 @@ import axios from 'axios';
 
 let base = '';
 
-export const requestLogin = params => {return axios.post(`${base}/login`, params).then(res => res.data); };
+//登录操作
+export const requestLogin = params => {
+    return axios.post(`${base}/login`, params)
+        .then(res => res.data);
+};
+
+//机械臂模式
+export const requestMode = params => {
+    return axios.post(`${base}/mode`, params)
+        .then(res => res.data);
+};
+
+//机械臂状态
+export const requestState = params => {
+    return axios.post(`${base}/state`, params)
+        .then(res => res.data);
+};
+
+//启停控制
+export const requestStart = params => {
+    return axios.post(`${base}/state`, params)
+        .then(res => res.data);
+};
 
 // export const getUserList = params => { return axios.get(`${base}/user/list`, { params: params }); };
 //

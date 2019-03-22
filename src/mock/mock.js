@@ -1,7 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { LoginUsers, Users } from './data/user';
-let _Users = Users;
+//let _Users = Users;
 
 export default {
   /**
@@ -10,15 +10,15 @@ export default {
   bootstrap() {
     let mock = new MockAdapter(axios);
 
-    // mock success request
-    mock.onGet('/success').reply(200, {
-      msg: 'success'
-    });
-
-    // mock error request
-    mock.onGet('/error').reply(500, {
-      msg: 'failure'
-    });
+    // // mock success request
+    // mock.onGet('/success').reply(200, {
+    //   msg: 'success'
+    // });
+    //
+    // // mock error request
+    // mock.onGet('/error').reply(500, {
+    //   msg: 'failure'
+    // });
 
     //登录
     mock.onPost('/login').reply(config => {

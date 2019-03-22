@@ -218,6 +218,7 @@
 </template>
 
 <script>
+    import {requestMode, requestState} from "../api/api";
     export default {
         data() {
             return {
@@ -315,7 +316,7 @@
                 let params = {
                     mode: val
                 };
-                this.$http.post('/api/handle/mode', params)
+                this.$http.post('http://loalhost:3000/api/handle/mode', params)
                     .then((response) => {
                         let res = response.data;
                         console.log(res);
