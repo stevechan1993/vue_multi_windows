@@ -10,7 +10,8 @@ import Mock from './mock'
 import iView from 'iview'
 import axios from 'axios';
 
-//Mock.bootstrap();
+// Mock data for Login
+Mock.bootstrap();
 
 import 'font-awesome/css/font-awesome.min.css'
 import 'element-ui/lib/theme-default/index.css'
