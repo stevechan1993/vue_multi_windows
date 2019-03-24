@@ -1,12 +1,24 @@
 const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
+const {socketClient} = require('../../framework/socket');
+const {encrypt, decrypt} = require('../../framework/tlv');
+
+const host = '132.196.1.13';
+const port = '6000';
 
 /* GET inexbot page. */
-router.get('/:command', function(req, res, next) {
-  console.log(req);
+router.get('/:cmd/:data', function(req, res, next) {
+  const cmd = req.params.cmd;
+  const data = req.params.data;
+  const msg = encrypt(cmd, data);
+  console.log(msg);
+
+  socketClient(host, port, msg, (params) => {
+    console.log(params);
+  });
   res.status(200)
-      .send('here is inexbot router');
+      .send(`Express received: ${cmd}, ${data} >>> ${msg}`);
 });
 
 
