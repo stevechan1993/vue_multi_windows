@@ -8,8 +8,8 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-  import { mapActions } from 'vuex'
+  import { mapGetters } from 'src/views/nav1/VUEX'
+  import { mapActions } from 'src/views/nav1/VUEX'
 
   export default {
     computed: {

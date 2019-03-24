@@ -54,23 +54,23 @@
 			<el-col :span="6" style="margin-left: 20px">
 				<span class="taskspan">
 					<Badge dot>
-						<router-link to="/App" class="demo-badge">
+						<router-link to="/app" class="demo-badge">
 							<img src="../assets/logo_nav/log0_12.png" />
 						</router-link>
     				</Badge>
 				</span>
 				<span class="taskspan">
-					<router-link to="/Page2" class="demo-badge">
+					<router-link to="/page2" class="demo-badge">
 						<img src="../assets/logo_nav/log0_13.png" />
 					</router-link>
 				</span>
 				<span class="taskspan">
-					<router-link to="/Page3" class="demo-badge">
+					<router-link to="/page3" class="demo-badge">
 						<img src="../assets/logo_nav/log0_14.png" />
 					</router-link>
 				</span>
 				<span class="taskspan">
-					<router-link to="/Page4" class="demo-badge">
+					<router-link to="/page4" class="demo-badge">
 						<img src="../assets/logo_nav/log0_nav_15.png" />
 					</router-link>
 				</span>
