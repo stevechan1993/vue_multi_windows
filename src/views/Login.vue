@@ -73,7 +73,7 @@
         this.$refs.ruleForm2.validate((valid) => {
           if (valid) {
             this.logining = true;
-            var loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
+            let loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
             requestLogin(loginParams).then(data => {
               this.logining = false;
               let { msg, code, user } = data;
@@ -84,7 +84,7 @@
                 });
               } else {
                 sessionStorage.setItem('user', JSON.stringify(user));
-                this.$router.push({ path: '/app' });
+                this.$router.push({ path: '/' });
               }
             });
           } else {
