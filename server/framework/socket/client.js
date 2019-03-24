@@ -1,3 +1,4 @@
+/* eslint-disable valid-jsdoc */
 const net = require('net');
 
 
@@ -9,23 +10,26 @@ const net = require('net');
  * @param {Function} calllback callback when receive msg from server.
 //  * @return {object} socket client.
  */
-module.exports = function(host = 'localhost', port = 4096, msg, calllback) {
+function client(host = 'localhost', port = 4096) {
   console.log(`connecting to ${host}:${port}`);
-  const client = net.createConnection({host, port}, () => {
+  const connection = net.createConnection({host, port}, () => {
     console.log('connected !');
   });
-
-  client.on('data', (data) => {
+  connection.on('data', (data) => {
     console.log(`Client Receive: ${data.toString()}`);
-    calllback && calllback(data.toString());
-    client.destroy();
+    // calllback && calllback(data.toString());
+    // client.destroy();
   });
 
-  client.on('end', () => {
+  connection.on('end', () => {
     console.log('disconnected from server');
   });
 
-  client.write(msg, () => {
-    console.log(`Client Sent: ${msg}`);
-  });
+  // client.write(msg, () => {
+  //   console.log(`Client Sent: ${msg}`);
+  // });
+  return connection;
 };
+
+
+module.exports = client;

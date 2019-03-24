@@ -9,3 +9,5 @@ module.exports = {socketClient, socketServer};
 // socketClient(host = 'localhost', port = 4096, msg, (params) => {
 //   console.log(params);
 // });
+
+socketServer();

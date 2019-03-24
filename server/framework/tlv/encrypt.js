@@ -6,7 +6,7 @@ const head = '4e66';
 // eslint-disable-next-line require-jsdoc
 function encrypt(command, data) {
   return head + _prefix4hex(data.length.toString(16)) +
-        command + _str2hex(data) + _crc32(data);
+    command + _str2hex(data) + _crc32(data);
 }
 
 /**
@@ -39,3 +39,7 @@ function _str2hex(data) {
 }
 
 module.exports = {encrypt};
+
+console.log(crc32.str(
+    '00172103{"robot":1,"status":0}', 20
+).toString(16));
