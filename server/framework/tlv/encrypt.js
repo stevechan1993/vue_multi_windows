@@ -7,8 +7,7 @@ const head = '4e66';
 function encrypt(command, data) {
   _length = _prefix4hex(data.length.toString(16));
   _bufferCode = _hex2buffer(_length + command + _ascii2hex(data));
-  console.log(_bufferCode);
-  console.log(_crc32(_bufferCode));
+  // console.log(_bufferCode);
 
   return head + _length + command + _ascii2hex(data) + _crc32(_bufferCode);
 }
@@ -23,9 +22,8 @@ function _prefix4hex(num) {
 }
 
 /**
- * str to hex crc value.
- * @param {string} pre number.
- * @param {string} data number.
+ * buffer to hex crc value.
+ * @param {buffer} buffer
  * @return {string} hex crc32 value
  */
 function _crc32(buffer) {
@@ -63,4 +61,5 @@ module.exports = {encrypt};
 // console.log(crc32.buf(new Buffer(e2, 'hex')).toString(16));
 // console.log(new Buffer(ex, 'hex'));
 
-// encrypt('2103', '{"robot":1,"status":0}');
+const a = encrypt('2103', '{"time":12134}');
+console.log(a);

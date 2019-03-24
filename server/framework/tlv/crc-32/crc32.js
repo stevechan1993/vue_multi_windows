@@ -66,7 +66,8 @@ let CRC32;
       C = (C >>> 8) ^ T[(C ^ buf[i++]) & 0xFF];
     }
     while (i < L + 3) C = (C >>> 8) ^ T[(C ^ buf[i++]) & 0xFF];
-    return C ^ -1;
+    // return C ^ -1;
+    return (C ^ -1) >>> 0;
   }
 
   function crc32_buf_8(buf, seed) {
