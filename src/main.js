@@ -11,7 +11,7 @@ import iView from 'iview'
 import axios from 'axios';
 
 // Mock data for Login
-Mock.bootstrap();
+//Mock.bootstrap();
 
 import 'font-awesome/css/font-awesome.min.css'
 import 'element-ui/lib/theme-default/index.css'

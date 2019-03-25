@@ -70,28 +70,48 @@
         this.$refs.ruleForm2.resetFields();
       },
       handleSubmit2(ev) {
-        this.$refs.ruleForm2.validate((valid) => {
-          if (valid) {
-            this.logining = true;
-            let loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
-            requestLogin(loginParams).then(data => {
-              this.logining = false;
-              let { msg, code, user } = data;
-              if (code !== 200) {
-                this.$message({
-                  message: msg,
-                  type: 'error'
-                });
-              } else {
-                sessionStorage.setItem('user', JSON.stringify(user));
-                this.$router.push({ path: '/' });
-              }
-            });
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
+        // this.$refs.ruleForm2.validate((valid) => {
+        //   if (valid) {
+        //     this.logining = true;
+        //     let loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
+        //     requestLogin(loginParams).then(data => {
+        //       this.logining = false;
+        //       let { msg, code, user } = data;
+        //       if (code !== 200) {
+        //         this.$message({
+        //           message: msg,
+        //           type: 'error'
+        //         });
+        //       } else {
+        //         sessionStorage.setItem('user', JSON.stringify(user));
+        //         this.$router.push({ path: '/' });
+        //       }
+        //     });
+        //   } else {
+        //     console.log('error submit!!');
+        //     return false;
+        //   }
+        // });
+        let params = {
+          username: 'admin',
+          password: '123456'
+        };
+        this.$http.post('http://localhost:3000/login', params)
+          .then((response) => {
+            // let res = response.data;
+            // console.log(res);
+            // alert(res.msg);
+            // console.log();
+            // //确认修改状态成功，修改当前select内容，否则设置为原内容
+            // if (res.code == 1) {
+            //   this.mode = val;
+            // } else {
+            //   this.mode = oldVal;
+            // }
+          })
+          .catch((reject) => {
+            console.log(reject);
+          });
       }
     }
   }

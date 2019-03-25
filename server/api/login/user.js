@@ -1,4 +1,4 @@
-const LoginUsers = [
+const LoginUsers =[
   {
     id: 1,
     username: 'admin',
@@ -8,4 +8,4 @@ const LoginUsers = [
   }
 ];
 
-module.exports = LoginUsers;
+module.exports = {LoginUsers};
