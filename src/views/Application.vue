@@ -127,7 +127,7 @@
                 <Layout>
                     <Sider hide-trigger
                            :style="{background: '#fff', padding: '0 0 0 0', 'border-right': '1px solid #e8eaec'}">
-                        <Menu active-name="/app/projects" @on-select="handleSelect" width="auto" :class="menuitemClasses">
+                        <Menu @on-select="handleSelect" width="auto" :class="menuitemClasses">
                             <MenuItem name="/app/techs">
                                 <Icon type="ios-navigate"></Icon>
                                 <span>工艺</span>
