@@ -258,7 +258,7 @@
           },
           {
             value: '1',
-            label: '伺服运行',
+            label: '伺服就绪',
           },
         ],
         modeList: [
@@ -354,7 +354,7 @@
         //     console.log(reject);
         //   });
         requestMode(params).then(data => {
-
+            
         })
       },
       code(val, oldVal) {
