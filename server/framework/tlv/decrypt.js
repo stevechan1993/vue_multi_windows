@@ -9,3 +9,6 @@ function decrypt(data) {
 }
 
 module.exports = {decrypt};
+
+const b = decrypt('4e66000e21037b2274696d65223a31323133347d9efb02e7');
+console.log(b);
