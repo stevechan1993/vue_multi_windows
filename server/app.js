@@ -19,5 +19,4 @@ app.use('/', (req, res, next) => {
 
 app.use('/inexbot', inexbotRouter);
 
-
 module.exports = app;
