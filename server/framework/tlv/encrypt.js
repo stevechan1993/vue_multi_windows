@@ -7,8 +7,6 @@ const head = '4e66';
 function encrypt(command, data) {
   _length = _prefix4hex(data.length.toString(16));
   _bufferCode = _hex2buffer(_length + command + _ascii2hex(data));
-  // console.log(_bufferCode);
-
   return head + _length + command + _ascii2hex(data) + _crc32(_bufferCode);
 }
 
@@ -31,8 +29,8 @@ function _crc32(buffer) {
 }
 
 // eslint-disable-next-line require-jsdoc
-function _hex2buffer(hex) {
-  return new Buffer(hex, 'hex');
+function _hex2buffer(data) {
+  return new Buffer(data, 'hex');
 }
 
 // eslint-disable-next-line require-jsdoc
@@ -51,15 +49,4 @@ module.exports = {encrypt};
 // console.log(encrypt('2103', '{"robot":1,"status":0}'));
 // const ex = '001721037b22726f626f74223a312c22737461747573223a307d0a';
 
-// console.log(_crc32(ex, ''));
-// console.log(
-//     _crc32(_hex2buffer('0017' + '2103' + _ascii2hex('{"robot":1,"status":0}') + '0a'))
-
-// );
-
 // console.log(crc32.buf(new Buffer(ex, 'hex')).toString(16));
-// console.log(crc32.buf(new Buffer(e2, 'hex')).toString(16));
-// console.log(new Buffer(ex, 'hex'));
-
-const a = encrypt('2103', '{"time":12134}');
-console.log(a);

@@ -9,7 +9,7 @@ const {encrypt, decrypt} = require('../../framework/tlv');
 const host = 'localhost';
 const port = '4096';
 const heartBeatCmd = '7266';
-const client = socketClient(host, port);
+const client = new socketClient(host, port);
 let heart;
 const example = '4e66001721037b22726f626f74223a312c22737461747573223a307d3f6e5dbc';
 
@@ -19,9 +19,7 @@ router.get('/:cmd/:data', function(req, res, next) {
   const data = req.params.data;
   const msg = encrypt(cmd, data);
   console.log(msg);
-  client.write(msg, () => {
-    console.log(`Client Sent: ${msg}`);
-  });
+  client.send(msg)
   res.status(200)
       .send(`Express received: ${cmd}, ${data} >>> ${msg}`);
 });
@@ -32,12 +30,13 @@ router.get('/heartbeat', function(req, res, next) {
   res.status(200).send('heart beat now');
   // .send(`Express received: ${cmd}, ${data} >>> ${msg}`);
 });
+
 /* GET inexbot page. */
 router.get('/example', function(req, res, next) {
   // heartBeat(1000);
-  client.write(example, () => {
-    console.log(`Client Sent: ${example}`);
-  }); res.status(200).send('send example');
+  client.send(example)
+
+  res.status(200).send('send example');
   // .send(`Express received: ${cmd}, ${data} >>> ${msg}`);
 });
 
@@ -50,10 +49,7 @@ function heartBeat(interval) {
     console.log(timestamp);
     const msg = encrypt(heartBeatCmd, `{"time":${timestamp}}`);
     console.log(`heart beat cmd: ${msg}`);
-
-    client.write(msg, () => {
-      console.log(`Client Sent: ${msg}`);
-    });
+    client.send(msg)
   }, interval);
 }
 

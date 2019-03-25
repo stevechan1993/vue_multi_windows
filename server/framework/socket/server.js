@@ -1,6 +1,6 @@
 const net = require('net');
 
-module.exports = function(port = 4096) {
+module.exports= f = function(port = 4096) {
   const server = net.createServer();
 
   // emitted when new client connects
@@ -22,7 +22,8 @@ module.exports = function(port = 4096) {
 
     socket.on('data', (data) => {
       console.log(`Server Revieved: ${data}`);
-      socket.write('hello, here is server');
+      // socket.write('hello, here is server');
+      socket.write(new Buffer('4e66001721037b22726f626f74223a312c22737461747573223a307d3f6e5dbc', 'hex'));
     });
   });
 
@@ -52,3 +53,5 @@ module.exports = function(port = 4096) {
     console.log(`Server is IP4/IP6     : ${family}`);
   });
 };
+
+// f()
