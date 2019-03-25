@@ -238,7 +238,7 @@
 </template>
 
 <script>
-  import {requestMode, requestState} from '../api/api';
+  import {requestMode, requestState, requestStart} from '../api/api';
 
   export default {
     data() {
@@ -337,22 +337,25 @@
         let params = {
           mode: val,
         };
-        this.$http.post('http://loalhost:3000/api/handle/mode', params)
-          .then((response) => {
-            let res = response.data;
-            console.log(res);
-            alert(res.msg);
-            console.log();
-            //确认修改状态成功，修改当前select内容，否则设置为原内容
-            if (res.code == 1) {
-              this.mode = val;
-            } else {
-              this.mode = oldVal;
-            }
-          })
-          .catch((reject) => {
-            console.log(reject);
-          });
+        // this.$http.post('http://loalhost:3000/api/handle/mode', params)
+        //   .then((response) => {
+        //     let res = response.data;
+        //     console.log(res);
+        //     alert(res.msg);
+        //     console.log();
+        //     //确认修改状态成功，修改当前select内容，否则设置为原内容
+        //     if (res.code == 1) {
+        //       this.mode = val;
+        //     } else {
+        //       this.mode = oldVal;
+        //     }
+        //   })
+        //   .catch((reject) => {
+        //     console.log(reject);
+        //   });
+        requestMode(params).then(data => {
+
+        })
       },
       code(val, oldVal) {
         console.log(val);
