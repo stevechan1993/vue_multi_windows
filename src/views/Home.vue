@@ -103,7 +103,8 @@
 				<el-dialog title="" :visible.sync="dialogTableVisible1" top="20%">
 					<el-row :gutter="20" style="margin: -102px -20px -30px;">
 						<el-col :span="6" style="padding-left: 0px; padding-right: 1px">
-							<div class="grid-content bg-purple"></div>
+							<div class="grid-content bg-purple">
+							</div>
 						</el-col>
 						<el-col :span="18" style="padding-left: 0px; padding-right: 0px">
 							<div class="grid-content bg-purple">
@@ -116,10 +117,43 @@
 				<el-dialog title="" :visible.sync="dialogTableVisible2" top="20%">
 					<el-row :gutter="20" style="margin: -102px -20px -30px;">
 						<el-col :span="6" style="padding-left: 0px; padding-right: 1px">
-							<div class="grid-content bg-purple"></div>
+							<div class="grid-content bg-purple">
+								<Row>
+									<div style="color: #fff; font-size: 18px; position: relative; left: 100px; top: 10px">设置</div>
+									<Divider />
+								</Row>
+								<Row>
+									<Input placeholder="Enter text" style="width: auto; position: relative; left: 25px; bottom: 10px">
+										<Icon type="ios-search" slot="suffix" />
+									</Input>
+								</Row>
+								<Row>
+									<Menu :theme="theme2" active-name="1-2" :open-names="['1']" style="width: 235px;" class="bg-purple">
+										<Submenu name="1">
+											<template slot="title">
+												<Icon type="ios-paper" />
+												系统应用
+											</template>
+											<MenuItem name="1-1">应用1</MenuItem>
+											<MenuItem name="1-2">应用2</MenuItem>
+											<MenuItem name="1-3">应用3</MenuItem>
+										</Submenu>
+										<Submenu name="2">
+											<template slot="title">
+												<Icon type="ios-people" />
+												用户应用
+											</template>
+											<MenuItem name="2-1">INEXBOT</MenuItem>
+											<MenuItem name="2-2">HJSJSK</MenuItem>
+										</Submenu>
+									</Menu>
+								</Row>
+							</div>
 						</el-col>
 						<el-col :span="18" style="padding-left: 0px; padding-right: 0px">
-							<div class="grid-content bg-purple"></div>
+							<div class="grid-content bg-purple">
+
+							</div>
 						</el-col>
 					</el-row>
 				</el-dialog>
@@ -157,6 +191,7 @@
 	export default {
 		data() {
 			return {
+				theme2: 'dark',
 				isFullscreen: true,
 				sysName:'VUE-IIOT',
 				collapsed:false,
