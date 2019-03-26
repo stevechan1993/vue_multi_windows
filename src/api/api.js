@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let base = 'http://localhost:3000';
+// let base = 'http://localhost:3000';
 
 //登录操作
 // export const requestLogin = params => {

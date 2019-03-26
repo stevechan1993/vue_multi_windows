@@ -46,9 +46,9 @@ function heartBeat(interval) {
   if (heart) clearInterval(heart);
   heart = setInterval(() => {
     const timestamp = new Date().getTime();
-    console.log(timestamp);
+    // console.log(timestamp);
     const msg = encrypt(heartBeatCmd, `{"time":${timestamp}}`);
-    console.log(`heart beat cmd: ${msg}`);
+    // console.log(`heart beat cmd: ${msg}`);
     client.send(msg);
   }, interval);
 }

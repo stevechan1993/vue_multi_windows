@@ -8,8 +8,8 @@ import Vuex from 'vuex'
 import routes from './routes'
 import Mock from './mock'
 import iView from 'iview'
-import axios from 'axios';
-
+// import axios from 'axios';
+import axios from "./http/api";
 // Mock data for Login
 //Mock.bootstrap();
 
@@ -24,9 +24,9 @@ Vue.use(ElementUI);
 Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(iView);
+Vue.use(axios);
 
 Vue.config.productionTip = false;
-Vue.prototype.$http = axios;
 
 const router = new VueRouter({
   routes

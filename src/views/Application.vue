@@ -238,8 +238,6 @@
 </template>
 
 <script>
-  import {requestMode, requestState, requestStart} from '../api/api';
-
   export default {
     data() {
       return {
@@ -334,34 +332,54 @@
     watch: {
       mode(val, oldVal) {
         console.log(val);
-        let params = {
-          mode: val,
-        };
-        // this.$http.post('http://loalhost:3000/api/handle/mode', params)
-        //   .then((response) => {
-        //     let res = response.data;
-        //     console.log(res);
-        //     alert(res.msg);
-        //     console.log();
-        //     //确认修改状态成功，修改当前select内容，否则设置为原内容
-        //     if (res.code == 1) {
-        //       this.mode = val;
-        //     } else {
-        //       this.mode = oldVal;
-        //     }
-        //   })
-        //   .catch((reject) => {
-        //     console.log(reject);
-        //   });
-        requestMode(params).then(data => {
-            
-        })
+        if (val === '0') {
+          let bodys = {};
+          this.$axios.inexbot
+            .inexbotMode0(bodys)
+            .then(response => {
+              console.log(response);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        } else if (val === '2') {
+          let bodys = {};
+          this.$axios.inexbot
+            .inexbotMode2(bodys)
+            .then(response => {
+              console.log(response);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        }
       },
       code(val, oldVal) {
         console.log(val);
       },
       state(val, oldVal) {
         console.log(val);
+        if (val === '0') {
+          let bodys = {};
+          this.$axios.inexbot
+            .inexbotStatus0(bodys)
+            .then(response => {
+              console.log(response);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        } else if (val === '1'){
+          let bodys = {};
+          this.$axios.inexbot
+            .inexbotStatus1(bodys)
+            .then(response => {
+              console.log(response);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        }
       },
       speed(val, oldVal) {
         console.log(val);
@@ -428,9 +446,20 @@
       //启停控制
       startAxis: function() {
         console.log('START');
+        this.code = "1";
+        let bodys = {};
+        this.$axios.inexbot
+          .inexbotStart(bodys)
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            console.log(error);
+          })
       },
       stopAxis: function() {
         console.log('STOP');
+        this.code = '0';
       },
       //窗口拖动与缩放
       byTagName: function(elem, obj) {
@@ -644,6 +673,42 @@
         oRevert.style.display = 'none';
         oMax.style.display = 'block';
       };
+
+      /* Set Modo to 0 */
+      let modeBodys = {};
+      this.$axios.inexbot
+        .inexbotMode0(modeBodys)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+      /* Set Status to 0 */
+      let StatusBodys = {};
+      this.$axios.inexbot
+        .inexbotStatus0(StatusBodys)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+      /* Set Code to Pause */
+      this.code = "0";
+
+      /* Sent Heatbeat */
+      let heartBeatBodys = {};
+      this.$axios.inexbot
+        .inexbotHeartBeat(heartBeatBodys)
+        .then(response => {
+
+        })
+        .catch(error => {
+          console.log(error);
+        })
     },
   };
 </script>
