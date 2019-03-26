@@ -5,11 +5,11 @@
                 <Row style="top: 20px">
                     <Col span="12">
                         <div class="font_div"
-                             style="float: left; position: relative; margin-left: 20px; color: #2d8cf0">工程预览
+                             style="float: left; position: relative; margin-left: 20px; margin-top: -4px; color: #2d8cf0; font-size: 16px">工程预览
                         </div>
                     </Col>
                     <Col span="12">
-                        <div class="font_div" style="float: right; position: relative; margin-right: 20px">共有3个程序</div>
+                        <div class="font_div" style="float: right; position: relative; margin-right: 20px; margin-top: -4px; font-size: 16px">共有3个程序</div>
                     </Col>
                 </Row>
             </Col>
@@ -18,15 +18,15 @@
         <Row>
             <Col span="24" style="height: 86px; top: -12px">
                 <div style="position: relative;top: 25px;right: 29px;">
-                    <Button :size="buttonSize" type="primary" style="float: right; margin-left: 20px; height: 30px; width: 80px">打开</Button>
-                    <Button :size="buttonSize" type="primary" style="float: right; width: 80px; height: 30px">新建</Button>
+                    <Button :size="buttonSize" type="primary" @click.native.prevent="handleOpenJob" style="float: right; margin-left: 20px; height: 35px; width: 90px">打开</Button>
+                    <Button :size="buttonSize" type="primary" style="float: right; width: 90px; height: 35px">新建</Button>
                 </div>
             </Col>
             <Divider style="margin: 0px;"/>
         </Row>
         <Row>
             <Col span="24">
-                <Table height="600" :columns="columns1" :data="data2"></Table>
+                <Table ref="selection" height="600" :columns="columns1" :data="data2"></Table>
             </Col>
         </Row>
     </div>
@@ -40,6 +40,7 @@
         buttonSize: 'large',
         columns1: [
           {
+            type: 'selection',
             title: '序号',
             key: 'nu',
           },
@@ -145,9 +146,14 @@
             date: '2019/03/25',
             info: 'TEXT',
           }
-        ],
+        ]
       };
     },
+    methods: {
+      handleOpenJob: function() {
+        this.$router.push({path: '/app/programes'});
+      }
+    }
   };
 </script>
 
