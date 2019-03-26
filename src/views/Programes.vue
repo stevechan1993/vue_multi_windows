@@ -16,7 +16,7 @@
         <Row>
             <Col span="6" style="height: 50px">
                 <div style="float: left; position: relative; margin-left: 20px; margin-top: 14px; color: #2d8cf0; font-size: 16px">文件名称：</div>
-                <div style="float: left; position: relative; margin-top: 14px; font-size: 16px; float: left">自定义名称</div>
+                <div style="float: left; position: relative; margin-top: 14px; font-size: 16px; float: left">WERTY</div>
             </Col>
             <Col span="6" style="height: 50px">
                 <div style="float: left; position: relative; margin-left: 20px; margin-top: 14px; color: #2d8cf0; font-size: 16px">机器人轴组：</div>
@@ -184,9 +184,11 @@
       };
     },
     methods: {
-      rowClassName(row, index) {
+      rowClassName (index) {
         if (index === 1) {
           return 'demo-table-info-row';
+        } else if (index === 3) {
+          return 'demo-table-error-row';
         }
         return '';
       }
