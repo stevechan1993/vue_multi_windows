@@ -79,10 +79,10 @@
 			<el-col :span="6" class="userinfo" style="height: 52px; width: 100px; margin-right: 0px; float: right">
 				<Divider type="vertical" style="height: 20px; top: -20px; background: #fff; opacity: 0.5;"/>
 				<el-dropdown trigger="click">
-					<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" style="border-radius: 50px;"/></span>
+					<span class="el-dropdown-link userinfo-inner"><img src="../assets/user.png" style="border-radius: 50px;"/></span>
 					<el-dropdown-menu slot="dropdown" style="width: 300px; height: 600px; background: #3e3e3e; opacity: 0.8; margin-top: 0px; border: 0px">
 						<el-col :span="24" style="">
-							<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" style="width:100px;height:100px;border-radius:100px; position: relative; top: 30px; left: 100px"/></span>
+							<span class="el-dropdown-link userinfo-inner"><img src="../assets/user.png" style="width:100px;height:100px;border-radius:100px; position: relative; top: 30px; left: 100px"/></span>
 						</el-col>
 						<el-col :span="24" style="min-height: 200px;position: relative; top: 130px; color: #737373;">
 							<div class="display: flex">
@@ -104,6 +104,18 @@
 					<el-row :gutter="20" style="margin: -102px -20px -30px;">
 						<el-col :span="6" style="padding-left: 0px; padding-right: 1px">
 							<div class="grid-content bg-purple">
+								<Row>
+									<div style="color: #fff; font-size: 18px; position: relative; left: 100px; top: 10px">商店</div>
+									<Divider />
+								</Row>
+								<Row>
+									<Input placeholder="请输入您要搜索的应用" style="width: auto; position: relative; left: 25px; bottom: 10px">
+										<Icon type="ios-search" slot="suffix" />
+									</Input>
+								</Row>
+								<Row>
+
+								</Row>
 							</div>
 						</el-col>
 						<el-col :span="18" style="padding-left: 0px; padding-right: 0px">
@@ -123,30 +135,12 @@
 									<Divider />
 								</Row>
 								<Row>
-									<Input placeholder="Enter text" style="width: auto; position: relative; left: 25px; bottom: 10px">
+									<Input placeholder="" style="width: auto; position: relative; left: 25px; bottom: 10px">
 										<Icon type="ios-search" slot="suffix" />
 									</Input>
 								</Row>
 								<Row>
-									<Menu :theme="theme2" active-name="1-2" :open-names="['1']" style="width: 235px;" class="bg-purple">
-										<Submenu name="1">
-											<template slot="title">
-												<Icon type="ios-paper" />
-												系统应用
-											</template>
-											<MenuItem name="1-1">应用1</MenuItem>
-											<MenuItem name="1-2">应用2</MenuItem>
-											<MenuItem name="1-3">应用3</MenuItem>
-										</Submenu>
-										<Submenu name="2">
-											<template slot="title">
-												<Icon type="ios-people" />
-												用户应用
-											</template>
-											<MenuItem name="2-1">INEXBOT</MenuItem>
-											<MenuItem name="2-2">HJSJSK</MenuItem>
-										</Submenu>
-									</Menu>
+
 								</Row>
 							</div>
 						</el-col>
@@ -158,8 +152,8 @@
 					</el-row>
 				</el-dialog>
 				<el-button type="primary" icon="message" @click="value1 = true" class="mybutton"></el-button>
-				<Drawer title="消息" :closable="false" :mask="true" :transfer="false" :inner="true" v-model="value1" :scrollable="true">
-					<Row>
+				<Drawer title="消息中心" :closable="false" :mask="true" :transfer="false" :inner="true" v-model="value1" :scrollable="true" style="background: #3e3e3e">
+					<Row style="background: #3e3e3e;">
 						<Col>
 							<Card :bordered="false" style="background: #3e3e3e; width: 225px;">
 								<p slot="title">

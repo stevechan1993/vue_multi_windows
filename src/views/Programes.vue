@@ -96,8 +96,30 @@
             key: 'maxRotate',
           },
         ],
-        columns3: [],
-        columns4: [],
+        columns3: [
+          {
+            title: '轴',
+            key: 'axis'
+          },
+          {
+            title: '扭矩',
+            key: 'torque'
+          },
+          {
+            title: '最大扭矩',
+            key: 'maxtorque'
+          }
+        ],
+        columns4: [
+          {
+            title: '位置参数',
+            key: 'position'
+          },
+          {
+            title: '当前值',
+            key: 'value'
+          }
+        ],
         data1: [
           {
             step: '0',
@@ -131,18 +153,18 @@
         data2: [
           {
             axis: 'S',
-            rotate: '0转/min',
-            maxRotate: '0转/min',
+            rotate: '-50转/min',
+            maxRotate: '53转/min',
           },
           {
             axis: 'L',
-            rotate: '0转/min',
-            maxRotate: '0转/min',
+            rotate: '-96转/min',
+            maxRotate: '109转/min',
           },
           {
             axis: 'U',
-            rotate: '0转/min',
-            maxRotate: '0转/min',
+            rotate: '1转/min',
+            maxRotate: '1转/min',
           },
           {
             axis: 'R',
@@ -151,8 +173,8 @@
           },
           {
             axis: 'B',
-            rotate: '0转/min',
-            maxRotate: '0转/min',
+            rotate: '25转/min',
+            maxRotate: '40转/min',
           },
           {
             axis: 'T',
@@ -175,8 +197,79 @@
             maxRotate: '0转/min',
           },
         ],
-        data3: [],
-        data4: [],
+        data3: [
+          {
+            axis: 'S',
+            torque: '180毫牛*m',
+            maxtorque: '196毫牛*m'
+          },
+          {
+            axis: 'L',
+            torque: '-86毫牛*m',
+            maxtorque: '196毫牛*m'
+          },
+          {
+            axis: 'U',
+            torque: '-168毫牛*m',
+            maxtorque: '200毫牛*m'
+          },
+          {
+            axis: 'R',
+            torque: '10毫牛*m',
+            maxtorque: '11毫牛*m'
+          },
+          {
+            axis: 'B',
+            torque: '94毫牛*m',
+            maxtorque: '131毫牛*m'
+          },
+          {
+            axis: 'T',
+            torque: '10毫牛*m',
+            maxtorque: '12毫牛*m'
+          },
+          {
+            axis: 'O1',
+            torque: '0毫牛*m',
+            maxtorque: '0毫牛*m'
+          },
+          {
+            axis: 'O2',
+            torque: '0毫牛*m',
+            maxtorque: '0毫牛*m'
+          },
+          {
+            axis: 'O3',
+            torque: '0毫牛*m',
+            maxtorque: '0毫牛*m'
+          }
+        ],
+        data4: [
+          {
+            position: 'S',
+            value: '44.9697'
+          },
+          {
+            position: 'L',
+            value: '-7.85151'
+          },
+          {
+            position: 'U',
+            value: '-6.46382'
+          },
+          {
+            position: 'R',
+            value: '-4.55419'
+          },
+          {
+            position: 'B',
+            value: '67.6898'
+          },
+          {
+            position: 'T',
+            value: '-3.37456'
+          }
+        ],
         formLeft: {
           input1: '',
           input2: '',

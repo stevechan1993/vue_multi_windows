@@ -4,10 +4,10 @@ const router = express.Router();
 const {socketClient} = require('../../framework/socket');
 const {encrypt, decrypt} = require('../../framework/tlv');
 
-const host = '192.168.1.13';
-const port = '6000';
-// const host = 'localhost';
-// const port = '4096';
+// const host = '192.168.1.13';
+// const port = '6000';
+const host = 'localhost';
+const port = '4096';
 const heartBeatCmd = '7266';
 const client = new socketClient(host, port);
 let heart;
