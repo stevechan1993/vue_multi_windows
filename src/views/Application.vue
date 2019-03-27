@@ -157,7 +157,7 @@
                     <Layout :style="{'padding-left': '24px', 'padding-right': '24px'}">
                         <Content id="test"
                                  :style="{padding: '0px', background: '#fff', 'border-left': '1px solid #e8eaec', 'border-right': '1px solid #e8eaec'}">
-                            <router-view></router-view>
+                            <router-view ref='programes'></router-view>
                         </Content>
                     </Layout>
                     <Sider hide-trigger
@@ -239,6 +239,7 @@
 
 <script>
   export default {
+    name: 'Application',
     data() {
       return {
         isCollapsed: false,
@@ -445,6 +446,7 @@
       },
       //启停控制
       startAxis: function() {
+        this.$refs.programes.toggleHighLight();
         console.log('START');
         this.code = "1";
         let bodys = {};

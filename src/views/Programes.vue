@@ -4,10 +4,14 @@
             <Col span="24" style="height: 64px; top: 5px">
                 <Row style="top: 20px">
                     <Col span="12">
-                        <div style="float: left; position: relative; margin-left: 20px; margin-top: -4px; color: #2d8cf0;font-size: 16px">程序指令</div>
+                        <div style="float: left; position: relative; margin-left: 20px; margin-top: -4px; color: #2d8cf0;font-size: 16px">
+                            程序指令
+                        </div>
                     </Col>
                     <Col span="12">
-                        <div style="float: right; position: relative; margin-right: 20px; margin-top: -4px; font-size: 16px">共有11个程序指令</div>
+                        <div style="float: right; position: relative; margin-right: 20px; margin-top: -4px; font-size: 16px">
+                            共有7个程序指令
+                        </div>
                     </Col>
                 </Row>
             </Col>
@@ -15,19 +19,27 @@
         </Row>
         <Row>
             <Col span="6" style="height: 50px">
-                <div style="float: left; position: relative; margin-left: 20px; margin-top: 14px; color: #2d8cf0; font-size: 16px">文件名称：</div>
+                <div style="float: left; position: relative; margin-left: 20px; margin-top: 14px; color: #2d8cf0; font-size: 16px">
+                    文件名称：
+                </div>
                 <div style="float: left; position: relative; margin-top: 14px; font-size: 16px; float: left">WERTY</div>
             </Col>
             <Col span="6" style="height: 50px">
-                <div style="float: left; position: relative; margin-left: 20px; margin-top: 14px; color: #2d8cf0; font-size: 16px">机器人轴组：</div>
+                <div style="float: left; position: relative; margin-left: 20px; margin-top: 14px; color: #2d8cf0; font-size: 16px">
+                    机器人轴组：
+                </div>
                 <div style="float: left; position: relative; margin-top: 14px; font-size: 16px; float: left">R1</div>
             </Col>
             <Col span="6" style="height: 50px">
-                <div style="float: left; position: relative; margin-left: 20px; margin-top: 14px; color: #2d8cf0; font-size: 16px">工具手：</div>
+                <div style="float: left; position: relative; margin-left: 20px; margin-top: 14px; color: #2d8cf0; font-size: 16px">
+                    工具手：
+                </div>
                 <div style="float: left; position: relative; margin-top: 14px; font-size: 16px; float: left">T0</div>
             </Col>
             <Col span="6" style="height: 50px">
-                <div style="float: left; position: relative; margin-left: 20px; margin-top: 14px; color: #2d8cf0; font-size: 16px">运行次数：</div>
+                <div style="float: left; position: relative; margin-left: 20px; margin-top: 14px; color: #2d8cf0; font-size: 16px">
+                    运行次数：
+                </div>
                 <div style="float: left; position: relative; margin-top: 14px; font-size: 16px; float: left">1/1</div>
             </Col>
         </Row>
@@ -58,53 +70,34 @@
     name: 'Programes',
     data() {
       return {
-        // tableData: [{
-        //   date: '2016-05-02',
-        //   name: '王小虎',
-        //   address: '上海市普陀区金沙江路 1518 弄',
-        // }, {
-        //   date: '2016-05-04',
-        //   name: '王小虎',
-        //   address: '上海市普陀区金沙江路 1518 弄'
-        // }, {
-        //   date: '2016-05-01',
-        //   name: '王小虎',
-        //   address: '上海市普陀区金沙江路 1518 弄',
-        // }, {
-        //   date: '2016-05-03',
-        //   name: '王小虎',
-        //   address: '上海市普陀区金沙江路 1518 弄'
-        // }],
+        count: 0,
+        rowArray: [],
         columns1: [
           {
             title: '步骤',
-            key: 'step'
+            key: 'step',
           },
           {
             title: '内容',
-            key: 'content'
+            key: 'content',
           },
         ],
         columns2: [
           {
             title: '轴',
-            key: 'axis'
+            key: 'axis',
           },
           {
             title: '转速',
-            key: 'rotate'
+            key: 'rotate',
           },
           {
             title: '最大转速',
-            key: 'maxRotate'
-          }
+            key: 'maxRotate',
+          },
         ],
-        columns3: [
-
-        ],
-        columns4: [
-
-        ],
+        columns3: [],
+        columns4: [],
         data1: [
           {
             step: '0',
@@ -133,61 +126,57 @@
           {
             step: '6',
             content: '结束',
-          }
+          },
         ],
         data2: [
           {
             axis: 'S',
             rotate: '0转/min',
-            maxRotate: '0转/min'
+            maxRotate: '0转/min',
           },
           {
             axis: 'L',
             rotate: '0转/min',
-            maxRotate: '0转/min'
+            maxRotate: '0转/min',
           },
           {
             axis: 'U',
             rotate: '0转/min',
-            maxRotate: '0转/min'
+            maxRotate: '0转/min',
           },
           {
             axis: 'R',
             rotate: '0转/min',
-            maxRotate: '0转/min'
+            maxRotate: '0转/min',
           },
           {
             axis: 'B',
             rotate: '0转/min',
-            maxRotate: '0转/min'
+            maxRotate: '0转/min',
           },
           {
             axis: 'T',
             rotate: '0转/min',
-            maxRotate: '0转/min'
+            maxRotate: '0转/min',
           },
           {
             axis: '01',
             rotate: '0转/min',
-            maxRotate: '0转/min'
+            maxRotate: '0转/min',
           },
           {
             axis: '02',
             rotate: '0转/min',
-            maxRotate: '0转/min'
+            maxRotate: '0转/min',
           },
           {
             axis: '03',
             rotate: '0转/min',
-            maxRotate: '0转/min'
-          }
+            maxRotate: '0转/min',
+          },
         ],
-        data3: [
-
-        ],
-        data4: [
-
-        ],
+        data3: [],
+        data4: [],
         formLeft: {
           input1: '',
           input2: '',
@@ -196,17 +185,34 @@
         },
       };
     },
-    methods: {
-      rowClassName (row, index) {
-        if (index === 1) {
-          return "demo-table-info-row";
-        } else if (index === 3) {
-          return 'demo-table-error-row';
-        }
-        return '';
-      }
+    props: {
+
     },
-    mounted: {
+    methods: {
+      rowClassName(row, index) {
+        if (this.rowArray.length < 8) {
+          this.rowArray.push(row);
+        }
+      },
+      toggleHighLight() {
+        var count = 0;
+        var that = this;
+        for (var i = 0; i < this.rowArray.length; i++) {
+          this.rowArray[i]._isHighlight = false;
+        }
+        var t = setInterval(toggle, 2000);
+        function toggle() {
+          if (count == 7) {
+            clearInterval(t);
+          } else {
+            if (count > 0) {
+              that.rowArray[count - 1]._isHighlight = false;
+            }
+            that.rowArray[count]._isHighlight = true;
+            count ++;
+          }
+        }
+      }
     }
   };
 </script>
@@ -225,6 +231,7 @@
         height: 120px;
         margin-top: -16px;
     }
+
     .demo-tabs-style1 > .ivu-tabs-card > .ivu-tabs-content > .ivu-tabs-tabpane {
         background: #fff;
         padding: 16px;
@@ -238,37 +245,43 @@
         border-color: #fff;
     }
 
-    .ivu-table .demo-table-info-row td{
+    .ivu-table .demo-table-info-row td {
         background-color: #2db7f5;
         color: #fff;
     }
-    .ivu-table .demo-table-error-row td{
+
+    .ivu-table .demo-table-error-row td {
         background-color: #ff6600;
         color: #fff;
     }
-    .ivu-table td.demo-table-info-column{
+
+    .ivu-table td.demo-table-info-column {
         background-color: #2db7f5;
         color: #fff;
     }
+
     .ivu-table .demo-table-info-cell-name {
         background-color: #2db7f5;
         color: #fff;
     }
+
     .ivu-table .demo-table-info-cell-age {
         background-color: #ff6600;
         color: #fff;
     }
+
     .ivu-table .demo-table-info-cell-address {
         background-color: #187;
         color: #fff;
     }
 
     /*偶数行*/
-    .ivu-table-stripe-even td{
-        background-color: #434343!important;
+    .ivu-table-stripe-even td {
+        background-color: #434343 !important;
     }
+
     /*奇数行*/
-    .ivu-table-stripe-odd td{
-        background-color: #282828!important;
+    .ivu-table-stripe-odd td {
+        background-color: #282828 !important;
     }
 </style>
