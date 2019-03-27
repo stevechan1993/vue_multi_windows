@@ -109,7 +109,7 @@
 									<Divider />
 								</Row>
 								<Row>
-									<Input placeholder="请输入您要搜索的应用" style="width: auto; position: relative; left: 25px; bottom: 10px">
+									<Input placeholder="请输入您要搜索的内容" style="width: auto; position: relative; left: 25px; bottom: 10px">
 										<Icon type="ios-search" slot="suffix" />
 									</Input>
 								</Row>
@@ -135,18 +135,16 @@
 									<Divider />
 								</Row>
 								<Row>
-									<Input placeholder="" style="width: auto; position: relative; left: 25px; bottom: 10px">
+									<Input placeholder="请输入您要搜索的内容" style="width: auto; position: relative; left: 25px; bottom: 10px">
 										<Icon type="ios-search" slot="suffix" />
 									</Input>
 								</Row>
 								<Row>
-
 								</Row>
 							</div>
 						</el-col>
 						<el-col :span="18" style="padding-left: 0px; padding-right: 0px">
 							<div class="grid-content bg-purple">
-
 							</div>
 						</el-col>
 					</el-row>
