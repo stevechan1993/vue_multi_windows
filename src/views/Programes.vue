@@ -34,7 +34,7 @@
         <Row>
             <Divider style="margin-bottom: 50px; "/>
             <Col span="14">
-                <Table :row-class-name="rowClassName" :columns="columns1" :data="data1"></Table>
+                <Table ref="currentRowTable" :row-class-name="rowClassName" :columns="columns1" :data="data1"></Table>
             </Col>
             <Col span="10" style="padding-left: 20px">
                 <Tabs type="card">
@@ -58,6 +58,23 @@
     name: 'Programes',
     data() {
       return {
+        // tableData: [{
+        //   date: '2016-05-02',
+        //   name: '王小虎',
+        //   address: '上海市普陀区金沙江路 1518 弄',
+        // }, {
+        //   date: '2016-05-04',
+        //   name: '王小虎',
+        //   address: '上海市普陀区金沙江路 1518 弄'
+        // }, {
+        //   date: '2016-05-01',
+        //   name: '王小虎',
+        //   address: '上海市普陀区金沙江路 1518 弄',
+        // }, {
+        //   date: '2016-05-03',
+        //   name: '王小虎',
+        //   address: '上海市普陀区金沙江路 1518 弄'
+        // }],
         columns1: [
           {
             title: '步骤',
@@ -90,37 +107,33 @@
         ],
         data1: [
           {
-            step: '000',
-            content: 'BXDAGASKLDJGQIOEFASDF',
+            step: '0',
+            content: '开始',
           },
           {
-            step: '001',
-            content: 'BXDAGASKLDJGQIOEFASDF',
+            step: '1',
+            content: '点到点P001速度10% 平滑0 加速度10 减速10',
           },
           {
-            step: '002',
-            content: 'BXDAGASKLDJGQIOEFASDF',
+            step: '2',
+            content: '点到点P002速度10% 平滑0 加速度10 减速10',
           },
           {
-            step: '003',
-            content: 'BXDAGASKLDJGQIOEFASDF',
+            step: '3',
+            content: '点到点P003速度10% 平滑0 加速度10 减速10',
           },
           {
-            step: '004',
-            content: 'BXDAGASKLDJGQIOEFASDF',
+            step: '4',
+            content: '点到点P004速度10% 平滑0 加速度10 减速10',
           },
           {
-            step: '005',
-            content: 'BXDAGASKLDJGQIOEFASDF',
+            step: '5',
+            content: '点到点P005速度10% 平滑0 加速度10 减速10',
           },
           {
-            step: '006',
-            content: 'BXDAGASKLDJGQIOEFASDF',
-          },
-          {
-            step: '007',
-            content: 'BXDAGASKLDJGQIOEFASDF',
-          },
+            step: '6',
+            content: '结束',
+          }
         ],
         data2: [
           {
@@ -184,19 +197,30 @@
       };
     },
     methods: {
-      rowClassName (index) {
+      rowClassName (row, index) {
         if (index === 1) {
-          return 'demo-table-info-row';
+          return "demo-table-info-row";
         } else if (index === 3) {
           return 'demo-table-error-row';
         }
         return '';
       }
+    },
+    mounted: {
     }
   };
 </script>
 
 <style scoped>
+
+    .el-table .warning-row {
+        background: oldlace;
+    }
+
+    .el-table .success-row {
+        background: #f0f9eb;
+    }
+
     .demo-tabs-style1 > .ivu-tabs-card > .ivu-tabs-content {
         height: 120px;
         margin-top: -16px;
@@ -237,5 +261,14 @@
     .ivu-table .demo-table-info-cell-address {
         background-color: #187;
         color: #fff;
+    }
+
+    /*偶数行*/
+    .ivu-table-stripe-even td{
+        background-color: #434343!important;
+    }
+    /*奇数行*/
+    .ivu-table-stripe-odd td{
+        background-color: #282828!important;
     }
 </style>

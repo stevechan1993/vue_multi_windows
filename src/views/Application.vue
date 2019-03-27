@@ -265,7 +265,7 @@
             label: '示教模式',
           },
           {
-            value: '1',
+            value: '2',
             label: '运行模式',
           },
         ],
@@ -700,15 +700,15 @@
       this.code = "0";
 
       /* Sent Heatbeat */
-      let heartBeatBodys = {};
-      this.$axios.inexbot
-        .inexbotHeartBeat(heartBeatBodys)
-        .then(response => {
-
-        })
-        .catch(error => {
-          console.log(error);
-        })
+      // let heartBeatBodys = {};
+      // this.$axios.inexbot
+      //   .inexbotHeartBeat(heartBeatBodys)
+      //   .then(response => {
+      //
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   })
     },
   };
 </script>
