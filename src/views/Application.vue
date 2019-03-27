@@ -323,7 +323,7 @@
         mode: '0',
         state: '0',
         code: '0',
-        speed: 50,
+        speed: 10,
         robot: '1',
         tool: '1',
         tech: '1',

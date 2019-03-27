@@ -195,12 +195,13 @@
         }
       },
       toggleHighLight() {
-        var count = 0;
+        var count = 2;
         var that = this;
         for (var i = 0; i < this.rowArray.length; i++) {
           this.rowArray[i]._isHighlight = false;
         }
-        var t = setInterval(toggle, 2000);
+        this.rowArray[1]._isHighlight = true;
+        var t = setInterval(toggle, 11600);
         function toggle() {
           if (count == 7) {
             clearInterval(t);
